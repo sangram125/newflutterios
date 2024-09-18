@@ -1,9 +1,9 @@
-import 'dart:async';
-
 import 'package:dio/dio.dart';
+import 'package:dor_companion/app_router.dart';
 import 'package:dor_companion/data/api/sensy_api.dart';
 import 'package:dor_companion/injection/injection.dart';
 import 'package:dor_companion/login_view/mobile_number_verify/login_view_controller.dart';
+import 'package:dor_companion/redesign/login/view/membership_dialog.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -20,8 +20,7 @@ class SensyInterceptor extends Interceptor {
   SensyInterceptor(this.userAccount);
 
   @override
-  void onRequest(
-      RequestOptions options, RequestInterceptorHandler handler) async {
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
     if (kDebugMode) {
       print("${DateTime.now()} Request to path ${options.path}");
     }
@@ -45,10 +44,8 @@ class SensyInterceptor extends Interceptor {
     options.headers["X-App-Version-Code"] = "46";
 
     if (options.path.contains("/detail/page/home")) {
-      options.queryParameters.putIfAbsent(
-          "languages",
-          () =>
-              getIt<FavoriteLanguagesChangeNotifier>().getFavoriteLanguages());
+      options.queryParameters
+          .putIfAbsent("languages", () => getIt<FavoriteLanguagesChangeNotifier>().getFavoriteLanguages());
     }
 
     return handler.next(options);
@@ -65,33 +62,24 @@ class SensyInterceptor extends Interceptor {
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
+    debugPrint('mobile num - ${err.requestOptions.data['phone_number']}');
     print("Handler : $handler");
     if (err.response?.statusCode == 401) {
       getx.Get.find<LogInViewController>().updateLoader(false);
       var res = err.response;
       // Handle 401 error here
-      if (err.response?.statusCode == 401 &&
-          err.requestOptions.path.contains(ApiEndpoints.requestCrmOtp)) {
-        Fluttertoast.showToast(
-          msg: "Please activate your DOR TV",
-          toastLength: Toast.LENGTH_LONG, // Show toast for 5 seconds
-          gravity: ToastGravity.BOTTOM,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0,
-        );
-
-// Re-show the toast after 5 seconds (Toast.LENGTH_LONG default duration)
-        Timer(Duration(seconds: 5), () {
-          Fluttertoast.showToast(
-            msg: "Please activate your DOR TV",
-            toastLength: Toast.LENGTH_LONG,
-            gravity: ToastGravity.BOTTOM,
-            backgroundColor: Colors.red,
-            textColor: Colors.white,
-            fontSize: 16.0,
-          );
-        });
+      if (err.response?.statusCode == 401 && err.requestOptions.path.contains(ApiEndpoints.requestCrmOtp)) {
+        showMembershipDialog(
+            context: getIt<AppRouter>().routerDelegate.navigatorKey.currentContext!,
+            phoneNumber: err.requestOptions.data['phone_number']);
+        // Fluttertoast.showToast(
+        //   msg: "Please activate your DOR TV",
+        //   toastLength: Toast.LENGTH_SHORT,
+        //   gravity: ToastGravity.BOTTOM,
+        //   backgroundColor: Colors.red,
+        //   textColor: Colors.white,
+        //   fontSize: 16.0,
+        // );
       }
       if (kDebugMode) {}
 

@@ -24,8 +24,8 @@ class _LanguageItemViewState extends State<LanguageItemView> {
       child: Container(
         margin: const EdgeInsets.only(top: 8.0, right: 8.0, bottom: 8.0),
         padding: EdgeInsets.only(
-            right: 8.0,
-            left: 8.0,
+            right: 10.0,
+            left: 10.0,
             top: widget.isExpandMode ? 4.0 : 0.0,
             bottom: widget.isExpandMode ? 4.0 : 0.0),
         decoration: BoxDecoration(
@@ -40,17 +40,18 @@ class _LanguageItemViewState extends State<LanguageItemView> {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Text(widget.languageName,
-                style: const TextStyle(
-                  fontSize: 14,
-                  color: Colors.white,
-                )),
             if (!widget.isExpandMode)
               const Icon(
                 Icons.trending_up,
                 color: Colors.white,
                 size: 24,
               ),
+            Text(widget.languageName,
+                style: const TextStyle(
+                  fontSize: 14,
+                  color: Colors.white,
+                )),
+
           ],
         ),
       ),

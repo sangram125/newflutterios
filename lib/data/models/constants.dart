@@ -1,3 +1,4 @@
+import 'package:dor_companion/data/models/models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -9,7 +10,7 @@ class Constants {
   static const String watchOnActionLabelPrefix = "Watch on";
   static const String playStoreDeeplinkCompatibilityError =
       "Can't launch play store!";
-  static const String playStoreDeeplinkError = "Error laucnhing play store";
+  static const String playStoreDeeplinkError = "Error launching play store";
 
   ///Global variables for events.
   static String networkType = "";
@@ -70,6 +71,34 @@ class AppTypography {
     //color: Theme.of(context).colorScheme.onBackground,
     fontFamily: 'Raleway',
     decorationThickness: 700,
+  );
+
+  static TextStyle bodyLabel(double size, Color color) => TextStyle(
+    fontFamily: 'DMSans',
+    fontWeight: FontWeight.w400,
+    fontSize: size,
+    color: color
+  );
+
+  static TextStyle headingMed(double size,Color color) => TextStyle(
+    fontFamily: 'DMSans',
+    fontWeight: FontWeight.w500,
+    color: color,
+    fontSize: size
+  );
+
+  static TextStyle headingBold(double size, Color color) => TextStyle(
+      fontFamily: 'DMSans',
+      fontSize: size,
+      fontWeight: FontWeight.w700,
+      color: color
+  );
+
+  static TextStyle titleLabel(double size) => TextStyle(
+      fontFamily: 'DMSerifDisplay',
+      fontWeight: FontWeight.w400,
+      color: Colors.white,
+    fontSize: size
   );
 
   static const TextStyle undefinedTextStyle = TextStyle(
@@ -297,13 +326,13 @@ class AppTypography {
   static const TextStyle submitbutton = TextStyle(
     fontSize: 16,
     color: Colors.white,
-    fontFamily: 'Raleway', // Text color
+    fontFamily: 'Raleway',
   );
 
   static const TextStyle skipButtonTextRecommendationView = TextStyle(
     fontSize: 14,
     color: Colors.white,
-    fontFamily: 'Raleway', // Text color
+    fontFamily: 'Raleway',
   );
 
   static TextStyle watchListText = TextStyle(

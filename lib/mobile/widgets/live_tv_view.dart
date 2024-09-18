@@ -7,6 +7,7 @@ import 'package:dor_companion/mobile/help_and_support/widgets/custom_bottom_shee
 import 'package:dor_companion/mobile/widgets/live_news_page.dart';
 import 'package:dor_companion/mobile/widgets/tv_guide_page.dart';
 import 'package:dor_companion/mobile/widgets/media_detail/media_item_view.dart';
+import 'package:dor_companion/redesign/live_tv/tv_guide_screen.dart';
 import 'package:dor_companion/widgets/banner_carousel.dart';
 import 'package:firebase_performance/firebase_performance.dart';
 import 'package:flutter/foundation.dart';

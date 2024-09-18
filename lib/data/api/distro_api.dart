@@ -15,6 +15,7 @@ class DistroApiProvider {
     String randomNumber = DateTime.now().millisecondsSinceEpoch.toString();
     final deviceInfoPlugin = DeviceInfoPlugin();
     final deviceInfo = await deviceInfoPlugin.deviceInfo;
+    debugPrint('Device Info: $deviceInfo');
     devicesID = Platform.isAndroid ? deviceInfo.data['id'] : deviceInfo.data['utsname'];
     String seasonsID = '442';
     String actionID = durl;

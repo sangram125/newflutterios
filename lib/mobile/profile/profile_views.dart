@@ -3,15 +3,14 @@ import 'package:dor_companion/data/models/constants.dart';
 import 'package:dor_companion/firebase_analytics/firebase_analytics.dart';
 import 'package:dor_companion/firebase_analytics/firebase_performance.dart';
 import 'package:dor_companion/injection/injection.dart';
+import 'package:dor_companion/mobile/profile/Widget/add_new_profile_bottom_sheet_content.dart';
 import 'package:dor_companion/mobile/profile/controller/profile_controller.dart';
-import 'package:dor_companion/widgets/gradient_background_widget.dart';
 import 'package:dor_companion/widgets/loader.dart';
 import 'package:dor_companion/widgets/profile_gradient_border.dart';
 import 'package:firebase_performance/firebase_performance.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:skeleton_loader/skeleton_loader.dart';
 
@@ -35,39 +34,42 @@ class ProfileSelectionViewState extends State<ProfileSelectionView> {
     return PerformanceTrackedWidget(
         widgetName: 'profile-selection-view',
         child: Stack(children: [
-          Scaffold(
+          Obx(() => Scaffold(
+              backgroundColor: Colors.black,
+              resizeToAvoidBottomInset: false,
+              bottomNavigationBar: Column(mainAxisSize: MainAxisSize.min, children: [
+                InkWell(
+                    radius: 30,
+                    onTap: () => profileCtrl.isEdit.value = !profileCtrl.isEdit.value,
+                    child: profileCtrl.isEdit.value
+                        ? SvgPicture.asset(Assets.assets_images_profile_images_done_button_svg)
+                        : SvgPicture.asset(Assets.assets_images_profile_images_edit_button_svg)),
+                const SizedBox(height: 60)
+              ]),
               body: SafeArea(
-                  child: GradientBackground(
-                      child: Obx(() => Column(mainAxisSize: MainAxisSize.min, children: [
-                            Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                                  Visibility(
-                                      visible: widget.isComingFromProfile,
-                                      maintainSize: true,
-                                      maintainState: true,
-                                      maintainAnimation: true,
-                                      child: IconButton(
-                                          onPressed: () => context.pop(),
-                                          icon: SvgPicture.asset(Assets.assets_icons_arrow_back_svg,
-                                              colorFilter:
-                                                  const ColorFilter.mode(Colors.white, BlendMode.srcIn)))),
-                                  const Text("Who's watching?", style: AppTypography.bodyText1),
-                                  Visibility(
-                                      visible: widget.showEditButton,
-                                      child: TextButton(
-                                          onPressed: () =>
-                                              profileCtrl.isEdit.value = !profileCtrl.isEdit.value,
-                                          child: profileCtrl.isEdit.value
-                                              ? const Icon(Icons.close, color: Colors.white, size: 24)
-                                              : SvgPicture.asset(
-                                                  Assets.assets_images_profile_images_edit_svg)))
-                                ])),
-                            Consumer<UserAccount>(
-                                builder: (_, __, ___) => ProfileSelectionBody(
-                                    isComingFromProfile: widget.isComingFromProfile,
-                                    bottomSheetContext: context))
-                          ]))))),
+                  child: Column(mainAxisSize: MainAxisSize.min, children: [
+                const Text('Select a profile',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Color(0xFFE5E5E5),
+                        fontSize: 32,
+                        fontFamily: 'DMSerifDisplay',
+                        fontWeight: FontWeight.w400,
+                        letterSpacing: 0.20)),
+                const Text('You can have upto 5 profiles',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Color(0xFF666666),
+                        fontSize: 14,
+                        fontFamily: 'DMSans',
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: 0.20)),
+                const Spacer(),
+                Consumer<UserAccount>(
+                    builder: (_, __, ___) => ProfileSelectionBody(
+                        isComingFromProfile: widget.isComingFromProfile, bottomSheetContext: context)),
+                const Spacer(),
+              ])))),
           Obx(() {
             debugPrint('isLoading: isLoading = ${profileCtrl.isLoading.value}');
             return Visibility(
@@ -123,12 +125,17 @@ class _ProfileSelectionState extends State<ProfileSelectionBody> {
     return Obx(() => SingleChildScrollView(
             child: Column(children: [
           GridView.builder(
-              padding: const EdgeInsets.fromLTRB(24, 70, 0, 0),
+              padding: const EdgeInsets.fromLTRB(44, 0, 44, 0),
               shrinkWrap: true,
               itemBuilder: (BuildContext context, int index) {
                 if (index >= profileCtrl.numProfiles.value) {
                   return profileCtrl.isEdit.value == false
-                      ? ProfileItemView(cust.mobileNumber, null, null, const Icon(Icons.add, size: 55), false,
+                      ? ProfileItemView(
+                          cust.mobileNumber,
+                          null,
+                          null,
+                          SvgPicture.asset(Assets.assets_images_profile_images_add_profile_image_svg),
+                          false,
                           widget.isComingFromProfile)
                       : null;
                 }
@@ -210,7 +217,16 @@ class ProfileItemView extends StatelessWidget {
               }
               profileCtrl.isEdit.value
                   ? profileCtrl.profileItemLongPressed(profileId, true)
-                  : profileCtrl.profileItemTapped(profileId, isComingFromProfile);
+                  : profileId != null
+                      ? profileCtrl.profileItemTapped(profileId, isComingFromProfile)
+                      : showModalBottomSheet(
+                              context: context,
+                              isScrollControlled: true,
+                              constraints: BoxConstraints(
+                                  minHeight: MediaQuery.sizeOf(context).height * 0.85,
+                                  maxHeight: MediaQuery.sizeOf(context).height * 0.85),
+                              builder: (context) => const AddNewProfileBottomSheetContent())
+                          .then((value) => profileCtrl.nameController.clear());
               profileCtrl.isEdit.value = false;
               trace.stop();
             },
@@ -233,10 +249,10 @@ class ProfileItemView extends StatelessWidget {
                                   fit: BoxFit.contain))
                         ])))
                       : SizedBox(
-                          width: 110,
-                          height: 110,
+                          width: 100,
+                          height: 100,
                           child: ClipRRect(
-                              borderRadius: BorderRadius.circular(34.0),
+                              borderRadius: BorderRadius.circular(100.0),
                               child: Container(
                                   padding: profileId != null
                                       ? const EdgeInsets.all(0.0)
@@ -251,11 +267,18 @@ class ProfileItemView extends StatelessWidget {
                                             : Colors.transparent),
                                     Visibility(
                                         visible: profileCtrl.isEdit.value && profileId != null,
-                                        child: SvgPicture.asset(Assets.assets_images_profile_images_edit_svg,
+                                        child: SvgPicture.asset(
+                                            Assets.assets_images_profile_images_new_edit_icon_svg,
                                             fit: BoxFit.contain))
                                   ]))))),
                   const SizedBox(height: 16),
-                  Text(profileName ?? "Add Profile", style: AppTypography.addProfile)
+                  Text(profileName ?? "Add new",
+                      style: const TextStyle(
+                          color: Color(0xFFE5E5E5),
+                          fontSize: 14,
+                          fontFamily: 'DMSans',
+                          fontWeight: FontWeight.w400,
+                          height: 0.11))
                 ])));
   }
 }

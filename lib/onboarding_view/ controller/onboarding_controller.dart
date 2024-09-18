@@ -36,7 +36,7 @@ class OnboardingController extends GetxController {
     )
   ].obs;
 
-  final carouselController = CarouselController();
+  final carouselController = CarouselSliderController();
   RxInt pageIndex = 0.obs;
 
   List<String> buttonImagesPath = [

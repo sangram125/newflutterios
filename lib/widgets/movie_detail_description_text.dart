@@ -29,7 +29,6 @@ class ExpandableTextState extends State<ExpandableText> {
 
   @override
   Widget build(BuildContext context) {
-    print("read more ${_readMore}");
     const colorClickableText = Colors.blue;
     TextSpan link = TextSpan(
         text: _readMore ? "... read more" : " read less",
@@ -39,11 +38,7 @@ class ExpandableTextState extends State<ExpandableText> {
         recognizer: TapGestureRecognizer()..onTap = _onTapLink);
     WidgetSpan peopleTag = WidgetSpan(
         child:  !_readMore ?
-        widget.rows.isEmpty ?SizedBox.shrink() :MediaRowView(
-          // isToShowIcon: true,
-          isTopicScreen: true,
-          widget.rows[0],
-        ) : SizedBox.shrink()
+        SizedBox.shrink():SizedBox()
     );
     Widget result = LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
@@ -80,9 +75,12 @@ class ExpandableTextState extends State<ExpandableText> {
           textSpan = TextSpan(
             text: _readMore ? widget.text.substring(0, endIndex) : widget.text,
             style: const TextStyle(
-              fontSize: 14,
-              fontFamily: 'Poppins',
+              color: Color(0xFF999999),
+              fontSize: 12,
+              fontFamily: 'DM Sans',
               fontWeight: FontWeight.w400,
+
+              letterSpacing: 0.20,
             ),
             children: <InlineSpan>[
               link,

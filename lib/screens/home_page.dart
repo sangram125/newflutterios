@@ -1,8 +1,12 @@
 import 'package:clevertap_plugin/clevertap_plugin.dart';
+import 'package:dor_companion/app_router.dart';
+import 'package:dor_companion/assets.dart';
+import 'package:dor_companion/data/app_state.dart';
 import 'package:dor_companion/data/models/constants.dart';
 import 'package:dor_companion/data/models/home_page_provider.dart';
 import 'package:dor_companion/mobile/search/search_controller/search_controller.dart';
 import 'package:dor_companion/mobile/search/search_view.dart';
+import 'package:dor_companion/redesign/search/search_view_page.dart';
 import 'package:dor_companion/screens/nav_bar_item_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +24,8 @@ import '../../../widgets/custom_search_widget.dart' as se;
 import '../responsive.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+
+  HomePage({Key? key,}) : super(key: key);
 
   final HomePageProvider homePageProvider = Get.put(HomePageProvider());
   @override
@@ -31,7 +36,8 @@ class HomePage extends StatelessWidget {
   Widget _buildMobileHome(BuildContext context) => SafeArea(
         child: Scaffold(
           extendBodyBehindAppBar: true,
-          appBar: _buildAppBar(context),
+        backgroundColor: Colors.black,
+        //  appBar: _buildAppBar(context),
           body: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -138,7 +144,7 @@ class HomePage extends StatelessWidget {
   Widget _buildBottomNav(BuildContext context) {
     return Obx(
       () => Container(
-        color: Color(0xFF040523),
+        color: Colors.black,
         padding: const EdgeInsets.symmetric(horizontal: 10),
         width: MediaQuery.of(context).size.width,
         height: 80,
@@ -148,8 +154,8 @@ class HomePage extends StatelessWidget {
             NavBarItem(
               isSelected: homePageProvider.page == 0,
               title: 'Home',
-              selectedImage: "assets/images/home_images/selected_home.svg",
-              unSelectedImage: "assets/images/home_images/unselected_home.svg",
+              selectedImage: Assets.assets_images_home_images_selected_home_svg,
+              unSelectedImage: Assets.assets_images_home_images_unselected_home_svg,
               index: 0,
               onTap: (int selectedIndex) {
                 var eventProps = {
@@ -301,12 +307,21 @@ class HomePage extends StatelessWidget {
               ),
             NavBarItem(
               isSelected: homePageProvider.page == 4,
-              title: 'Profile',
+              title: 'Search',
               selectedImage: "assets/images/home_images/selected_profile.svg",
               unSelectedImage:
                   "assets/images/home_images/unselected_profile.svg",
               index: 4,
               onTap: (int selectedIndex) {
+                print("selected index $selectedIndex");
+                // se.showSearch(
+                //     context: getIt<AppRouter>().routerDelegate.navigatorKey.currentContext!,
+                //     delegate: SearchViewPage(
+                //       sensyApi: getIt<SensyApi>(),
+                //       searchSuggestion: getIt<SearchSuggestions>(),
+                //     ) ,
+                //   );
+                print("provider index ${homePageProvider.page.value}");
                 var eventProps = {
                   'Latitude': Constants.lat,
                   'Longitude': Constants.long,
@@ -315,7 +330,7 @@ class HomePage extends StatelessWidget {
                   'Network Type': Constants.networkType,
                   'Time of Login':
                       CleverTapPlugin.getCleverTapDate(DateTime.now()),
-                  'Category Clicked': 'Profile',
+                  'Category Clicked': 'Search',
                 };
 
                 CleverTapPlugin.recordEvent("Category clicked", eventProps);

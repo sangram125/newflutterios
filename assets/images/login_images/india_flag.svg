@@ -1,0 +1,25 @@
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_4526_3868)">
+<rect width="20" height="20" rx="4" fill="white"/>
+<rect width="20" height="7" fill="#FF9933"/>
+<rect y="13" width="20" height="7" fill="#138808"/>
+<circle cx="10" cy="10" r="1.9" stroke="#000066" stroke-width="0.2"/>
+<path d="M10 8.77539L10 11.2249" stroke="#000066" stroke-width="0.122474"/>
+<path d="M9.38745 8.93945L10.6122 11.0608" stroke="#000066" stroke-width="0.122474"/>
+<path d="M8.93921 9.3877L11.0605 10.6124" stroke="#000066" stroke-width="0.122474"/>
+<path d="M8.77515 10.0002L11.2246 10.0002" stroke="#000066" stroke-width="0.122474"/>
+<path d="M8.93921 10.6125L11.0605 9.3878" stroke="#000066" stroke-width="0.122474"/>
+<path d="M9.38745 11.0608L10.6122 8.93947" stroke="#000066" stroke-width="0.122474"/>
+<path d="M10.3171 8.81689L9.68316 11.1829" stroke="#000066" stroke-width="0.122474"/>
+<path d="M9.68311 8.81689L10.3171 11.1829" stroke="#000066" stroke-width="0.122474"/>
+<path d="M9.13403 9.13403L10.8661 10.8661" stroke="#000066" stroke-width="0.122475"/>
+<path d="M8.81714 9.68311L11.1832 10.3171" stroke="#000066" stroke-width="0.122474"/>
+<path d="M8.81714 10.3171L11.1832 9.68316" stroke="#000066" stroke-width="0.122474"/>
+<path d="M9.13403 10.866L10.8661 9.13392" stroke="#000066" stroke-width="0.122474"/>
+</g>
+<defs>
+<clipPath id="clip0_4526_3868">
+<rect width="20" height="20" rx="4" fill="white"/>
+</clipPath>
+</defs>
+</svg>

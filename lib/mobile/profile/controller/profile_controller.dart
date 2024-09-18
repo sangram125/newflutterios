@@ -65,17 +65,12 @@ class ProfileController extends GetxController {
   ];
   RxBool isHovered = false.obs;
 
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
-  }
-
   fetchData(BuildContext context) async {
     final profileImages = await initProfileImages(context);
     customer.value = getIt<UserAccount>().customer;
     this.profileImages.value = profileImages;
     profiles = List<Profile>.from(customer.value!.profiles);
+    debugPrint('profiles length ${profiles!}');
     var kidsProfileIndex =
         profiles?.indexWhere((profile) => profile.isRestricted == true);
     if (kidsProfileIndex != -1) {

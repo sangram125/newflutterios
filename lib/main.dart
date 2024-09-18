@@ -4,6 +4,8 @@ import 'package:dor_companion/firebase_options.dart';
 import 'package:dor_companion/firebase_remote_connfig/firebase_remote_config.dart';
 import 'package:dor_companion/injection/injection.dart';
 import 'package:dor_companion/mobile/screens/no_internet.dart';
+import 'package:dor_companion/redesign/sports/sports_detail_vm.dart';
+import 'package:dor_companion/redesign/view_model/tv_guide_vm.dart';
 import 'package:dor_companion/utils.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -32,9 +34,7 @@ Future<void> main() async {
   Get.put(ConnectivityService());
 
   await configureInjection();
-    runApp(const MyApp());
-
-
+  runApp(const MyApp());
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -58,19 +58,14 @@ Future<void> main() async {
   ]);
   url_strategy.usePathUrlStrategy();
 
-  runApp(
-    MultiProvider(
-      providers: [
-        // ChangeNotifierProvider(create: (_) => HomePageProvider()),
-        ChangeNotifierProvider(create: (_) => getIt<UserAccount>()),
-        ChangeNotifierProvider(
-            create: (_) => getIt<FavoriteLanguagesChangeNotifier>()),
-        ChangeNotifierProvider(
-            create: (_) => getIt<UserInterestsChangeNotifier>()),
-      ],
-      child: const MyApp(),
-    ),
-  );
+  runApp(MultiProvider(providers: [
+    // ChangeNotifierProvider(create: (_) => HomePageProvider()),
+    ChangeNotifierProvider(create: (_) => getIt<UserAccount>()),
+    ChangeNotifierProvider(create: (_) => getIt<FavoriteLanguagesChangeNotifier>()),
+    ChangeNotifierProvider(create: (_) => getIt<UserInterestsChangeNotifier>()),
+    ChangeNotifierProvider<TvGuideVm>(create: (_) => TvGuideVm()),
+    ChangeNotifierProvider<SportsDetailVm>(create: (_) => SportsDetailVm()),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -103,47 +98,47 @@ class MyApp extends StatelessWidget {
         final connectivityService = Get.find<ConnectivityService>();
         return Obx(() => connectivityService.isOnline.value
             ? GetMaterialApp.router(
-          routerDelegate: router.routerDelegate,
-          routeInformationParser: router.routeInformationParser,
-          routeInformationProvider: router.routeInformationProvider,
-          title: 'Dor',
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-              brightness: Brightness.dark,
-              fontFamily: 'Raleway',
-              colorScheme: const ColorScheme.dark(
-                primary: primary,
-                onPrimary: onPrimary,
-                secondary: secondary,
-                onSecondary: onSecondary,
-                surface: background,
-                onSurface: onBackground,
-                background: background,
-                onBackground: onBackground,
-                tertiary: tertiary,
-                error: error,
-                onError: onError,
-                primaryContainer: primaryContainer,
-                errorContainer: errorContainer,
-              ),
-              textSelectionTheme: const TextSelectionThemeData(
-                cursorColor: cursorColor,
-                selectionColor: selectionColor,
-                selectionHandleColor: selectionHandleColor,
-              ),
-              scaffoldBackgroundColor: background,
-              iconTheme: const IconThemeData(color: iconColor),
-              dialogTheme: const DialogTheme(
-                backgroundColor: secondary,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                ),
-              )),
-        )
-            :  const MaterialApp(
-          debugShowCheckedModeBanner: false,
-              home: NoInternet(),
-            ));
+                routerDelegate: router.routerDelegate,
+                routeInformationParser: router.routeInformationParser,
+                routeInformationProvider: router.routeInformationProvider,
+                title: 'Dor',
+                debugShowCheckedModeBanner: false,
+                theme: ThemeData(
+                    brightness: Brightness.dark,
+                    fontFamily: 'Raleway',
+                    colorScheme: const ColorScheme.dark(
+                      primary: primary,
+                      onPrimary: onPrimary,
+                      secondary: secondary,
+                      onSecondary: onSecondary,
+                      surface: background,
+                      onSurface: onBackground,
+                      background: background,
+                      onBackground: onBackground,
+                      tertiary: tertiary,
+                      error: error,
+                      onError: onError,
+                      primaryContainer: primaryContainer,
+                      errorContainer: errorContainer,
+                    ),
+                    textSelectionTheme: const TextSelectionThemeData(
+                      cursorColor: cursorColor,
+                      selectionColor: selectionColor,
+                      selectionHandleColor: selectionHandleColor,
+                    ),
+                    scaffoldBackgroundColor: background,
+                    iconTheme: const IconThemeData(color: iconColor),
+                    dialogTheme: const DialogTheme(
+                      backgroundColor: secondary,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                      ),
+                    )),
+              )
+            : const MaterialApp(
+                debugShowCheckedModeBanner: false,
+                home: NoInternet(),
+              ));
       },
     );
   }

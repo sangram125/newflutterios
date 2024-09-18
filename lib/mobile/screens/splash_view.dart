@@ -36,9 +36,9 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     super.initState();
+    _startShowVideoTimer();
     initializeVideo();
     getIt<UserAccount>().setOnHome(false);
-    _startShowVideoTimer();
   }
 
   Future<void> apiCallForPreLoading() async {
@@ -88,12 +88,13 @@ class _SplashViewState extends State<SplashView> {
   void _startShowVideoTimer() {
     if (getIt<UserAccount>().isLoggedIn()) {
       apiCallForPreLoading().then((_) {
-        _timer = Timer(const Duration(seconds: 2), () {
-          callHomeInit();
+        callHomeInit();
+       // _timer = Timer(const Duration(seconds: 2), () {
+       //   callHomeInit();
           // callInitNews();
           // callInitSports();
           // callInit();
-        });
+     //   });
       });
     }
     // _timer = Timer(const Duration(seconds: 6), () {

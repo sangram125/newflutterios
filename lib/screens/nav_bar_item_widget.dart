@@ -22,43 +22,30 @@ class NavBarItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: InkWell(
-        onTap: () => onTap(index),
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SvgPicture.asset(
-              isSelected ? selectedImage : unSelectedImage,
-              width: 26,
-              height: 26,
-              colorFilter: ColorFilter.mode(
-                Theme.of(context).colorScheme.onPrimary,
-                BlendMode.dstIn,
-              ),
-            ),
-            Text(
-              title,
-              style: isSelected
-                  ? TextStyle(
-                fontSize: 10,
-                fontWeight: FontWeight.w700,
-                fontFamily: "Raleway",
-                color: Theme.of(context).colorScheme.onPrimary,
-              )
-                  : TextStyle(
-                fontSize: 10,
-                fontWeight: FontWeight.w700,
-                fontFamily: "Raleway",
-                color: Theme.of(context)
-                    .colorScheme
-                    .onPrimary
-                    .withOpacity(0.20),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+        child: InkWell(
+            onTap: () => onTap(index),
+            child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SvgPicture.asset(isSelected ? selectedImage : unSelectedImage,
+                      width: 26,
+                      height: 26,
+                      colorFilter:
+                          ColorFilter.mode(Theme.of(context).colorScheme.onPrimary, BlendMode.dstIn)),
+                 const SizedBox(height: 3),
+                  Text(title,
+                      style: isSelected
+                          ? const TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w700,
+                              fontFamily: "Raleway",
+                              color: Color(0xFFFF323B))
+                          : TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w700,
+                              fontFamily: "Raleway",
+                              color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.20)))
+                ])));
   }
 }

@@ -18,6 +18,8 @@ import 'package:firebase_performance/firebase_performance.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+import '../../../redesign/live_tv/widgets/card_banners.dart';
+import '../../../widgets/appbar_custom.dart';
 import '../../widgets/live_tv_view.dart';
 
 const int _nextPageBuffer = 2;
@@ -142,7 +144,6 @@ class SportsTab extends StatefulWidget {
 class _SportsTabState extends State<SportsTab> with AutomaticKeepAliveClientMixin {
   @override
   void initState() {
-    print("-----------> call sports  pageeeee--------------");
         callInitSports();
         super.initState();
   }
@@ -154,8 +155,7 @@ class _SportsTabState extends State<SportsTab> with AutomaticKeepAliveClientMixi
   }
 
   Widget _buildBanners() {
-    final banners =
-        ResponsiveWidget.isLargeScreen(context) ? sportsAppState.bannersWeb : sportsAppState.banners;
+    final banners = sportsAppState.banners;
     final isBannersError = ResponsiveWidget.isLargeScreen(context)
         ? sportsAppState.isBannersWebError
         : sportsAppState.isBannersError;
@@ -180,7 +180,11 @@ class _SportsTabState extends State<SportsTab> with AutomaticKeepAliveClientMixi
 
     return Column(children: [
       if (widget.itemId == "home") _buildChips(),
-      if (getIt<UserAccount>().profileName != "kids") BannersCarousel(banners: banners.value)
+      if (getIt<UserAccount>().profileName != "kids") CommonBanner(
+        bannerList: banners.value,
+        isShowPlayButton: true,
+      isShowPlayWithWatchListButton: false,
+      isShowNotifyButton: false,),
     ]);
   }
 
@@ -222,6 +226,7 @@ class _SportsTabState extends State<SportsTab> with AutomaticKeepAliveClientMixi
                     widgetName: 'sports-view',
                     child: Scaffold(
                         backgroundColor: Colors.transparent,
+                        appBar: const LogoAppBar(showLogo: false, pageText: "Sports"),
                         body: Container(
                             margin: const EdgeInsets.only(bottom: 0),
                             child: ListView.builder(

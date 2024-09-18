@@ -11,6 +11,8 @@ part of 'sensy_api.dart';
 class _SensyApi implements SensyApi {
   _SensyApi(
       this._dio) {
+    // baseUrl ??= 'https://sensara.co/api/';
+    // baseUrl ??= 'https://api-360-preprod.streamboxmedia.com/api/';
     baseUrl ??= 'https://api-360-prod.streamboxmedia.com/api/';
   }
 
@@ -387,6 +389,64 @@ class _SensyApi implements SensyApi {
           baseUrl,
         ))));
     final value = await compute(deserializeMediaDetail, _result.data!);
+    return value;
+  }
+
+  @override
+  Future<MediaDetail> fetchMoodDetail(
+     String mood
+      ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<MediaDetail>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+      _dio.options,
+      'v4/epg/detail/mood/$mood',
+      queryParameters: queryParameters,
+      data: _data,
+    )
+        .copyWith(
+        baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
+    final value = await compute(deserializeMediaDetail, _result.data!);
+    return value;
+  }
+
+  @override
+  Future<FavoriteResponse> fetchFav( ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<dynamic>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+      _dio.options,
+      'v4/user/favorites',
+      queryParameters: queryParameters,
+      data: _data,
+    )
+        .copyWith(
+        baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
+
+    print('fav response -- ${_result.data}');
+    final value = await compute(deserializeFavoriteResponse, _result.data!);
     return value;
   }
 

@@ -581,28 +581,43 @@ class _SearchPageState<T> extends State<_SearchPage<T>> {
       label: routeName,
       child: Theme(
         data: theme,
-        child: Scaffold(
-          appBar: AppBar(
-            leading: widget.delegate.buildLeading(context),
-            title: TextField(
-              controller: widget.delegate._queryTextController,
-              focusNode: focusNode,
-              style: widget.delegate.searchFieldStyle ?? theme.textTheme.titleLarge,
-              textInputAction: widget.delegate.textInputAction,
-              onChanged: _onQueryChanged1,
-              keyboardType: widget.delegate.keyboardType,
-              onSubmitted: (String _) {
-                widget.delegate.showResults(context);
-              },
-              decoration: InputDecoration(hintText: searchFieldLabel),
-
+        child: SafeArea(
+          child: Scaffold(
+            appBar: AppBar(
+              leadingWidth: 0,
+              leading: SizedBox.shrink(),
+              title: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: widget.delegate._queryTextController,
+                      focusNode: focusNode,
+                      style: widget.delegate.searchFieldStyle ?? theme.textTheme.titleLarge,
+                      textInputAction: widget.delegate.textInputAction,
+                      onChanged: _onQueryChanged1,
+                      keyboardType: widget.delegate.keyboardType,
+                      onSubmitted: (String _) {
+                        widget.delegate.showResults(context);
+                      },
+                      decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.search),
+                          suffixIcon:Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: widget.delegate.buildActions(context)!,
+                          ),
+                          hintText: searchFieldLabel
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              // actions: widget.delegate.buildActions(context),
+              // bottom: widget.delegate.buildBottom(context),
             ),
-            actions: widget.delegate.buildActions(context),
-            bottom: widget.delegate.buildBottom(context),
-          ),
-          body: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 300),
-            child: body,
+            body: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 300),
+              child: body,
+            ),
           ),
         ),
       ),

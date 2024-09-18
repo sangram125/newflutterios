@@ -804,6 +804,7 @@ class MediaRow {
   final List<MediaItem> mediaItems;
   @JsonKey(defaultValue: "")
   String title;
+  bool isSelected;
 
   String? rowImage;
   String? rowTime;
@@ -818,6 +819,7 @@ class MediaRow {
     required this.mediaItemIcons,
     required this.mediaItems,
     required this.title,
+    this.isSelected= false,
   }) {
     Map<int, String> lookup = {};
     final tempIcons = mediaItemIcons;
@@ -922,6 +924,45 @@ Map<String, dynamic> serializeMediaDetail(MediaDetail object) =>
 
 MediaDetail deserializeMediaDetail(Map<String, dynamic> json) =>
     MediaDetail.fromJson(json);
+
+@JsonSerializable()
+class FavoriteResponse {
+  final List<FavoriteResult> result;
+
+  const FavoriteResponse({
+    this.result = const [],
+  });
+
+  Map<String, dynamic> toJson() => _$FavoriteResponseToJson(this);
+
+  factory FavoriteResponse.fromJson(Map<String, dynamic> json) =>
+      _$FavoriteResponseFromJson(json);
+}
+
+@JsonSerializable()
+class FavoriteResult {
+  @JsonKey(name: 'item_type')
+  final String itemType;
+  @JsonKey(name: 'item_ids')
+  final List<String> itemIds;
+
+  const FavoriteResult({
+    required this.itemType,
+    this.itemIds = const [],
+  });
+
+  Map<String, dynamic> toJson() => _$FavoriteResultToJson(this);
+
+  factory FavoriteResult.fromJson(Map<String, dynamic> json) =>
+      _$FavoriteResultFromJson(json);
+}
+
+// Serialization functions
+Map<String, dynamic> serializeFavoriteResponse(FavoriteResponse object) =>
+    object.toJson();
+
+FavoriteResponse deserializeFavoriteResponse(Map<String, dynamic> json) =>
+    FavoriteResponse.fromJson(json);
 
 @JsonSerializable()
 class StandardPromotionResult {
@@ -1174,7 +1215,9 @@ class Genre {
 
   bool isSelected = false;
 
-  Genre({required this.title, this.isSelected = false});
+  String? image;
+
+  Genre({required this.title, this.isSelected = false, this.image});
 
   factory Genre.fromJson(Map<String, dynamic> json) => _$GenreFromJson(json);
 }
@@ -1281,11 +1324,18 @@ class Channel {
 
   factory Channel.fromJson(Map<String, dynamic> json) =>
       _$ChannelFromJson(json);
+
+  @override
+  String toString() {
+    return 'Channel{id: $id, operatorChannelId: $operatorChannelId, name: $name, image: $image, genre: $genre, language: $language, key: $key, feedHLS: $feedHLS, feedDeepLink: $feedDeepLink, slug: $slug, identifier: $identifier, deeplinkPackage: $deeplinkPackage, feedDeeplinkPackageTv: $feedDeeplinkPackageTv, feedDeeplinkPackageMobile: $feedDeeplinkPackageMobile, source: $source, isActive: $isActive}';
+  }
+
 }
 
 Channel deserializeChannel(Map<String, dynamic> json) => Channel.fromJson(json);
 List<Channel> deserializeChannelList(List<Map<String, dynamic>> json) =>
     json.map((e) => Channel.fromJson(e)).toList();
+
 
 class GameData {
   final String id;

@@ -1,25 +1,35 @@
+
 import 'package:dio/dio.dart';
+import 'package:dor_companion/data/app_state.dart';
 import 'package:dor_companion/data/models/constants.dart';
 import 'package:dor_companion/firebase_analytics/firebase_performance.dart';
-import 'package:dor_companion/mobile/widgets/media_detail/media_item_view.dart';
+import 'package:dor_companion/redesign/home_screen/widget/continue_watching_rail.dart';
+import 'package:dor_companion/redesign/home_screen/widget/explore_ott_home_view.dart';
+import 'package:dor_companion/redesign/home_screen/widget/filter_by_genre.dart';
+import 'package:dor_companion/redesign/home_screen/widget/filter_by_moods.dart';
+import 'package:dor_companion/redesign/home_screen/widget/language_filter.dart';
+import 'package:dor_companion/redesign/home_screen/widget/latest_content.dart';
+import 'package:dor_companion/redesign/home_screen/widget/personalised_collection_view.dart';
+import 'package:dor_companion/redesign/home_screen/widget/special_collection_view.dart';
+import 'package:dor_companion/redesign/home_screen/widget/top_ten_content_view.dart';
+import 'package:dor_companion/redesign/live_tv/widgets/card_banners.dart';
+import 'package:dor_companion/sdk_action_manager.dart';
+import 'package:dor_companion/widgets/appbar_custom.dart';
 import 'package:firebase_performance/firebase_performance.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:get/get.dart';
 
 import '../../data/api/sensy_api.dart';
 import '../../data/models/models.dart';
 import '../../data/models/user_account.dart';
 import '../../injection/injection.dart';
-import '../../mobile/widgets/media_detail/media_row_view.dart' as mob_row_view;
 import '../../responsive.dart';
-import '../../utils.dart';
-import '../../web/widgets/media_detail/media_row_view.dart' as web_row_view;
-import '../../widgets/banner_carousel.dart';
-import '../../widgets/loader.dart';
 import '../../widgets/media_detail/mdp_loaders.dart';
 import '../../widgets/media_detail/media_rows_view.dart';
 import '../screens/no_internet.dart';
+import '../search/search_controller/search_controller.dart';
 import 'live_tv_view.dart';
 
 const int _nextPageBuffer = 2;
@@ -46,13 +56,10 @@ class HomeTab extends StatefulWidget {
 class _HomeTabState extends State<HomeTab> with AutomaticKeepAliveClientMixin {
   List<StandardPromotion> _banners = [];
   bool _isBannersError = false;
-
   List<StandardPromotion> _bannersWeb = [];
   bool _isBannersWebError = false;
   final ScrollController _scrollController = ScrollController();
-
-  // final ScrollController _buttonScrollController = ScrollController();
-
+   final searchController =  Get.put(SearchViewController());
   List<MediaRow> rows = [];
   List<MediaRow> rows2 = [];
   bool isError = false;
@@ -66,20 +73,12 @@ class _HomeTabState extends State<HomeTab> with AutomaticKeepAliveClientMixin {
     print(getIt<UserAccount>().profileName);
     _fetchBanners();
     _fetchData();
+    //_fetchMood();
     _listenToPaginationScroll();
+    searchController.fetchData("tab", "find");
     _scrollController.addListener(() {
       setState(() {
-        // if (_scrollController.position.minScrollExtent == 0) {
-        //   setState(() {
-        //     fabIsVisible = false;
-        //   });
-        // } else {
-        //   setState(() {
-        //     fabIsVisible = true;
-        //   });
-        // }
         print("----value ${_scrollController.position.minScrollExtent}");
-
         fabIsVisible = _scrollController.position.userScrollDirection ==
             ScrollDirection.reverse;
         if (ScrollDirection.forward ==
@@ -96,7 +95,6 @@ class _HomeTabState extends State<HomeTab> with AutomaticKeepAliveClientMixin {
         }
       });
     });
-    LiveTvTab liveTvTab = LiveTvTab();
   }
 
   @override
@@ -104,7 +102,37 @@ class _HomeTabState extends State<HomeTab> with AutomaticKeepAliveClientMixin {
     _scrollController.dispose();
     super.dispose();
   }
+  fetchGenres() {
+    homeState.isGenresError.value = false;
+    final Trace trace = FirebasePerformance.instance.newTrace('fetch-genres');
+    trace.start();
+    getIt<SensyApi>().fetchGenres().then((genres) {
+      if (genres.list.isEmpty) {
+        homeState.isGenresError.value = true;
+        return;
+      }
 
+      homeState.genres.value = genres;
+
+      homeState.isGenresError.value = false;
+      homeState.rows.notifyListeners();
+      homeState.banners.notifyListeners();
+      appState.genres.notifyListeners();
+    }).catchError((errorObj) {
+      switch (errorObj.runtimeType) {
+        case DioException:
+          final response = (errorObj as DioException).response;
+          print("Failed to fetch Genres: ${response?.statusCode}");
+          break;
+        default:
+          if (kDebugMode) {
+            print("Encountered unknown error of type ${errorObj.runtimeType}");
+          }
+      }
+      homeState.isGenresError.value = true;
+    });
+    trace.stop();
+  }
   _listenToPaginationScroll() {
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
@@ -132,7 +160,8 @@ class _HomeTabState extends State<HomeTab> with AutomaticKeepAliveClientMixin {
 
       setState(() {
         _banners = banners.standardPromotions;
-        print("banners = ${_banners.length}");
+        homeState.banners.value = banners.standardPromotions;
+        print("banners = ${homeState.banners.value.length}");
         _isBannersError = false;
       });
     }).catchError((errorObj) {
@@ -180,6 +209,7 @@ class _HomeTabState extends State<HomeTab> with AutomaticKeepAliveClientMixin {
       });
     });
   }
+
 
   int getMobilePromotionsId() {
     if (widget.key.toString().contains("news")) {
@@ -245,6 +275,8 @@ class _HomeTabState extends State<HomeTab> with AutomaticKeepAliveClientMixin {
           for (MediaRow row in mediaDetail.mediaRows) {
             if (row.mediaItems.isNotEmpty) {
               rows.add(row);
+              homeState.rows.value.add(row);
+              print("value adde");
               if (widget.itemType == "page") {
                 for (var mediaItem in row.mediaItems) {
                   mediaItem.isHomeScreen = true;
@@ -258,18 +290,6 @@ class _HomeTabState extends State<HomeTab> with AutomaticKeepAliveClientMixin {
             }
           }
           if (widget.itemType == "page") {
-            //        addRows(
-            //   getIt<SensyApi>().fetchPaginatedMediaDetail(
-            //       widget.itemType!, widget.itemId!, 0),
-            //   rows.last,
-            // ).catchError((errorObj) {
-            //   switch (errorObj.runtimeType) {
-            //     case DioException:
-            //       final response = (errorObj as DioException).response;
-            //       showVanillaToast("Failed to fetch next page: "
-            //           "${response?.statusCode}");
-            //   }
-            // });
           }
 
           //  print("rossss  $rows");
@@ -306,141 +326,18 @@ class _HomeTabState extends State<HomeTab> with AutomaticKeepAliveClientMixin {
       }
     });
   }
-
-  Widget _buildBanners() {
-    final banners =
-        ResponsiveWidget.isLargeScreen(context) ? _bannersWeb : _banners;
-    final isBannersError = ResponsiveWidget.isLargeScreen(context)
-        ? _isBannersWebError
-        : _isBannersError;
-    if (banners.isEmpty && !isBannersError) {
-      if (kDebugMode) {
-        print("returning banner loader");
+  static MediaAction? getFirstWatchOnActionOrNull(List<MediaAction> actions) {
+    print("wat act ${actions.isEmpty}");
+    print("wat act ${actions.elementAt(0).title}");
+    if (actions.isEmpty) return null;
+    for (MediaAction action in actions) {
+      if (ActionTypes.watchOnActionTypes
+          .contains(action.chatAction.actionType)) {
+        return action;
       }
-      return SizedBox(
-          height: MediaQuery.of(context).size.width,
-          width: 280,
-          child: const Center(child: Loader()));
     }
 
-    if (isBannersError) {
-      return SizedBox(
-        height: MediaQuery.of(context).size.width,
-        child: Center(
-          child: ElevatedButton(
-            onPressed: _fetchBanners,
-            style: ElevatedButton.styleFrom(
-              shape: const StadiumBorder(),
-              backgroundColor: Theme.of(context).colorScheme.tertiary,
-              textStyle: AppTypography.fontSizeChanges,
-            ),
-            child: const Text(
-              "Tap to retry",
-              style: AppTypography.undefinedTextStyle,
-            ),
-          ),
-        ),
-      );
-    }
-
-    return Column(
-      children: [
-        if (widget.itemId == "home") _buildChips(),
-        if (getIt<UserAccount>().profileName != "kids")
-          BannersCarousel(
-            banners: banners,
-          ),
-      ],
-    );
-  }
-
-  _buildChips() {
-    return const Column(
-      children: [
-        // const SizedBox(
-        //   height: 15,
-        // ),
-        // SizedBox(
-        //   height: 35,
-        //   child: Padding(
-        //     padding: const EdgeInsets.only(left: 10.0),
-        //     child: ListView(
-        //       scrollDirection: Axis.horizontal,
-        //       children: [
-        //         ChipWidget(
-        //           onTap: () {
-        //             context.read<HomePageProvider>().gotoPage(5);
-        //           },
-        //           title: "Movies",
-        //           imagePath: 'assets/images/home_images/movie.png',
-        //         ),
-        //         ChipWidget(
-        //           onTap: () {
-        //             context.read<HomePageProvider>().gotoPage(6);
-        //           },
-        //           title: "TV Shows",
-        //           imagePath: 'assets/images/home_images/popcorn.png',
-        //         ),
-        //         ChipWidget(
-        //           onTap: () {
-        //             context.read<HomePageProvider>().gotoPage(2);
-        //           },
-        //           title: "Live TV",
-        //           imagePath: 'assets/images/home_images/television.png',
-        //         ),
-        //         ChipWidget(
-        //           onTap: () {
-        //             context.read<HomePageProvider>().gotoPage(7);
-        //           },
-        //           title: "Kids",
-        //           imagePath: 'assets/images/home_images/kids.png',
-        //         ),
-        //         ChipWidget(
-        //           onTap: () {
-        //             context.read<HomePageProvider>().gotoPage(3);
-        //           },
-        //           title: "Sports",
-        //           imagePath: 'assets/images/home_images/sports.png',
-        //         ),
-        //         ChipWidget(
-        //           onTap: () {
-        //             context.read<HomePageProvider>().gotoPage(1);
-        //           },
-        //           title: "News",
-        //           imagePath: 'assets/images/home_images/newspaper.png',
-        //         ),
-        //         ChipWidget(
-        //           onTap: () {
-        //             context.read<HomePageProvider>().gotoPage(8);
-        //           },
-        //           title: "Games",
-        //           imagePath: 'assets/images/home_images/game.png',
-        //         ),
-        //       ],
-        //     ),
-        //   ),
-        // ),
-        // const Divider(),
-        SizedBox(
-          height: 1,
-        ),
-        // InkWell(
-        //   onTap: () => context.push("/subscriptions"),
-        //   child: const Padding(
-        //     padding: EdgeInsets.symmetric(horizontal: 15),
-        //     child: SizedBox(
-        //       height: 150,
-        //       child: Image(
-        //           image: AssetImage('assets/images/home_images/Card.png')),
-        //     ),
-        //   ),
-        // ),
-        // const SizedBox(
-        //   height: 20,
-        // ),
-        // const Divider(),
-      ],
-    );
+    return null;
   }
 
   @override
@@ -464,16 +361,21 @@ class _HomeTabState extends State<HomeTab> with AutomaticKeepAliveClientMixin {
       }
       return NoInternet();
     }
+    //new
+    List<StandardPromotion> banners = ResponsiveWidget.isLargeScreen(context)
+        ? homeState.bannersWeb.value
+        : homeState.banners.value;
+    final isBannersError = ResponsiveWidget.isLargeScreen(context)
+        ? homeState.isBannersWebError.value
+        : homeState.isBannersError.value;
 
-    final isLargeScreen = ResponsiveWidget.isLargeScreen(context);
-    if (kDebugMode) {
-      print(
-          "${widget.key} rows not empty and not error. Rows length: ${rows.length}, current page: $currentPage, total pages: $totalPages");
-    }
     return PerformanceTrackedWidget(
       widgetName: 'home-main-view',
+
       child: Scaffold(
-        backgroundColor: Colors.transparent,
+
+        appBar: LogoAppBar(showLogo: true, pageText: '',),
+          backgroundColor: Colors.black.withOpacity(0.800000011920929),
         // floatingActionButton: AnimatedOpacity(
         //   duration: const Duration(microseconds: 100),
         //   opacity: fabIsVisible ? 1 : 0,
@@ -502,121 +404,158 @@ class _HomeTabState extends State<HomeTab> with AutomaticKeepAliveClientMixin {
         //     ),
         //   ),
         // ),
-        body: ListView.builder(
-            controller: _scrollController,
-            itemCount: rows.length + (currentPage < totalPages ? 3 : 2),
-            itemBuilder: (context, index) {
-              if (kDebugMode) {
-                print("${widget.key} building row $index");
-              }
-              if (index == 0) {
-                return _buildBanners();
-              }
 
-              if (widget.itemType != null &&
-                  widget.itemId != null &&
-                  currentPage < totalPages &&
-                  index > rows.length - _nextPageBuffer + 1) {
-                print("object");
-                currentPage++;
-                // addRows(
-                //   getIt<SensyApi>().fetchPaginatedMediaDetail(
-                //       widget.itemType!, widget.itemId!, currentPage),
-                //   rows.last,
-                // ).catchError((errorObj) {
-                //   switch (errorObj.runtimeType) {
-                //     case DioException:
-                //       final response = (errorObj as DioException).response;
-                //       showVanillaToast("Failed to fetch next page: "
-                //           "${response?.statusCode}");
-                //   }
-                // });
-              }
+        body: SafeArea(
+            child: SingleChildScrollView(
+                child:  Column(children: [
+                  homeState.banners.value.isEmpty
+                      ? const SizedBox()
+                      :
+                  isBannersError
+                      ? SizedBox(
+                      height: MediaQuery.of(context).size.width,
+                      child: Center(
+                          child: ElevatedButton(
+                              onPressed: fetchBanners,
+                              style: ElevatedButton.styleFrom(
+                                  shape: const StadiumBorder(),
+                                  backgroundColor:
+                                  Theme.of(context).colorScheme.tertiary,
+                                  textStyle: AppTypography.fontSizeChanges),
+                              child: const Text("Tap to retry",
+                                  style: AppTypography.undefinedTextStyle))))
+                      : CommonBanner(
+                    isHomeScreen: true,
+                      bannerList: banners,
+                      isShowPlayButton: true,
+                      isShowNotifyButton: false,
+                      isShowPlayWithWatchListButton: false,
+                      onCardPressed: (index) {
+                        banners[index].action.executeAction(context);
+                        //eventCall.bannerClickEvent('home_screen');
+                      }),
+                  Container(
+                      color: Colors.black.withOpacity(0.800000011920929),
+                      child:  Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // TypesOfLiveChannelGridScreen(),
+                            ContinueWatchingRailView(),
+                            LatestContentView(rows:homeState.rows.value,),
+                            SizedBox(height: 10,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 50,
+                                  height: 0.5,
+                                  decoration: ShapeDecoration(
+                                    gradient: LinearGradient(
+                                      begin: Alignment(0.00, -1.00),
+                                      end: Alignment(0, 1),
+                                      colors: [Color(0xFF4D0CDA),Color(0xFF4D0CDA),Color(0xFF733FE2), Color(0xFF733FE2)],
+                                    ),
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                                  ),
+                                ),
+                                Container(
+                                  width: 36,
+                                  height: 36,
+                                  decoration: ShapeDecoration(
+                                    gradient: LinearGradient(
+                                      begin: Alignment(0.00, -1.00),
+                                      end: Alignment(0, 1),
+                                      colors: [Color(0xFF4D0CDA), Color(0xFF733FE2)],
+                                    ),
+                                    shape: StarBorder(
+                                      points: 4,
+                                      innerRadiusRatio: 0.38,
+                                      pointRounding: 0,
+                                      valleyRounding: 0,
+                                      rotation: 0,
+                                      squash: 0,
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  width: 50,
+                                  height: 0.5,
+                                  decoration: ShapeDecoration(
+                                    gradient: LinearGradient(
+                                      begin: Alignment(0.00, -1.00),
+                                      end: Alignment(0, 1),
+                                      colors: [Color(0xFF4D0CDA),Color(0xFF4D0CDA), Color(0xFF733FE2),Color(0xFF733FE2)],
+                                    ),
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 10,),
+                            ExploreOttHomeView(),
+                            SizedBox(height: 10,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 50,
+                                  height: 0.5,
+                                  decoration: ShapeDecoration(
+                                    gradient: LinearGradient(
+                                      begin: Alignment(0.00, -1.00),
+                                      end: Alignment(0, 1),
+                                      colors: [Color(0xFF4D0CDA), Color(0xFF733FE2)],
+                                    ),
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                                  ),
+                                ),
+                                Container(
+                                  width: 36,
+                                  height: 36,
+                                  decoration: ShapeDecoration(
+                                    gradient: LinearGradient(
+                                      begin: Alignment(0.00, -1.00),
+                                      end: Alignment(0, 1),
+                                      colors: [Color(0xFF4D0CDA), Color(0xFF733FE2)],
+                                    ),
+                                    shape: StarBorder(
+                                      points: 4,
+                                      innerRadiusRatio: 0.38,
+                                      pointRounding: 0,
+                                      valleyRounding: 0,
+                                      rotation: 0,
+                                      squash: 0,
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  width: 50,
+                                  height: 0.5,
+                                  decoration: ShapeDecoration(
+                                    gradient: LinearGradient(
+                                      begin: Alignment(0.00, -1.00),
+                                      end: Alignment(0, 1),
+                                      colors: [Color(0xFF4D0CDA), Color(0xFF733FE2)],
+                                    ),
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            TopTenContentView(),
+                            PersonalisedCollectionView(),
+                            SpecialCollectionView(),
+                            HomePageLanguageTabView(),
+                            FilterByMoodTabView(crossAxisCount:1,childAspectRatio :0.9,height: 0.18),
+                            FilterByGenreTabView()
+                          ])),
 
-              // if (index >= rows.length + 1) {
-              //   return const SizedBox(
-              //     height: 75,
-              //     child: Center(child: Loader()),
-              //   );
-              // }
+                ])))
 
-              int count = currentPage < totalPages ? 3 : 2;
-              if (index == rows.length + count - 1) {
-                return const SizedBox(height: 0);
-              }
-
-              // To ensure small list of rows remains scrollable to show/hide appbar
-              /*if (index >= rows.length + 1) {
-                return const SizedBox(height: 275);
-              }*/
-              if (rows[index - 1].mediaItems.isEmpty) {
-                return const SizedBox();
-              }
-
-              return isLargeScreen
-                  ? web_row_view.MediaRowView(rows[index - 1], addRows: addRows)
-                  : mob_row_view.MediaRowView(
-                      rows[index - 1],
-                      isTopicScreen: true,
-                      addRows: addRows,
-                      set: (data) {
-                        rows = data;
-                        MediaItemViewState.isFavoritePressed = null;
-                        setState(() {});
-                      },
-                    );
-            },
-          ),
       ),
     );
-    /*return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ...rows
-            .map((mediaRow) => isLargeScreen
-                ? web_row_view.MediaRowView(mediaRow, addRows: addRows)
-                : mobile_row_view.MediaRowView(mediaRow, addRows: addRows))
-            .toList()
-      ],
-    );*/
-  }
-
-  Future<void> addRows(Future<MediaDetail> fetchRows, MediaRow afterRow) {
-    return fetchRows.then((newRows) {
-      // if(widget.count==0 || widget.count==1) {
-
-      // widget.count++;
-      setState(() {
-        rows.insertAll(rows.indexOf(afterRow) + 1, newRows.mediaRows);
-        // fabIsVisible = true;
-        // print("apps ${}");
-      });
-      //   MediaRow appsForu = rows
-      //       .where((element) => element.contentType == 116)
-      //       .first;
-      //
-      //   // print("rowsappsForu $appsForu");
-      //   rows.remove(appsForu);
-      //   // print("rows $rows");
-      //
-      //   rows.insert(0, appsForu);
-      //   setState(() {
-      //
-      //   });
-      // }
-    }).catchError((errorObj) {
-      switch (errorObj.runtimeType) {
-        case DioException:
-          final response = (errorObj as DioException).response;
-          showVanillaToast("Failed to fetch additional rows: "
-              "${response?.statusCode}");
-      }
-      // TODO: Separate error state for additional row fetch failure
-      /*setState(() {
-        isError = true;
-      });*/
-      throw errorObj;
-    });
   }
 
   @override

@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:clevertap_plugin/clevertap_plugin.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:dor_companion/data/api/sensy_api.dart';
@@ -523,24 +522,24 @@ class LogInViewController extends GetxController {
     box6.text = otpCode[5];
     otpController.text = otpCode;
   }
-
-  Future<String> getNetworkType() async {
-    ConnectivityResult connectivityResult =
-        (await Connectivity().checkConnectivity()) as ConnectivityResult;
-
-    switch (connectivityResult) {
-      case ConnectivityResult.wifi:
-        return 'Wi-Fi';
-      case ConnectivityResult.mobile:
-        return 'Mobile Data';
-      case ConnectivityResult.ethernet:
-        return 'Ethernet';
-      case ConnectivityResult.none:
-        return 'No Network';
-      default:
-        return 'Unknown';
-    }
-  }
+  //
+  // Future<String> getNetworkType() async {
+  //   ConnectivityResult connectivityResult =
+  //       (await Connectivity().checkConnectivity()) as ConnectivityResult;
+  //
+  //   switch (connectivityResult) {
+  //     case ConnectivityResult.wifi:
+  //       return 'Wi-Fi';
+  //     case ConnectivityResult.mobile:
+  //       return 'Mobile Data';
+  //     case ConnectivityResult.ethernet:
+  //       return 'Ethernet';
+  //     case ConnectivityResult.none:
+  //       return 'No Network';
+  //     default:
+  //       return 'Unknown';
+  //   }
+  // }
 
   void updateLoader(bool val) {
     loading.value = val;

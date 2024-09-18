@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:dor_companion/assets.dart';
 import 'package:dor_companion/login_view/gradient_background_onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -76,18 +77,25 @@ class _VerifyOtpWidgetState extends State<VerifyOtpWidget> {
     final defaultPinTheme = PinTheme(
         width: 46,
         height: 53,
-        textStyle: const TextStyle(fontSize: 14, fontFamily: 'Roboto', color: Colors.white),
+        textStyle: const TextStyle(
+            fontSize: 22, fontFamily: 'Roboto', color: Colors.white, fontWeight: FontWeight.w700),
         decoration: BoxDecoration(
             color: Colors.transparent,
-            border: Border.all(color: Colors.deepOrange),
-            borderRadius: BorderRadius.circular(5)));
-
+            border: Border.all(color: const Color(0xFF666666)),
+            borderRadius: BorderRadius.circular(60)));
     final focusedPinTheme = defaultPinTheme.copyDecorationWith(
         color: Colors.transparent,
-        border: Border.all(color: const Color.fromRGBO(114, 178, 238, 1)),
-        borderRadius: BorderRadius.circular(5));
-    final submittedPinTheme =
-        defaultPinTheme.copyWith(decoration: defaultPinTheme.decoration!.copyWith(color: Colors.transparent));
+        border: Border.all(color: Colors.white),
+        borderRadius: BorderRadius.circular(60));
+    final followingPinTheme = defaultPinTheme.copyDecorationWith(
+        color: Colors.transparent,
+        border: Border.all(color: const Color(0xFF666666)),
+        borderRadius: BorderRadius.circular(60));
+    final submittedPinTheme = defaultPinTheme
+      .copyDecorationWith(
+          color: Colors.transparent,
+          border: Border.all(color: Colors.white),
+          borderRadius: BorderRadius.circular(60));
     return Scaffold(
         body: SafeArea(
             child: GradientBackgroundOnBoarding(
@@ -129,8 +137,9 @@ class _VerifyOtpWidgetState extends State<VerifyOtpWidget> {
                           const SizedBox(height: 30),
                           Pinput(
                               length: 6,
-                              showCursor: true,
+                              showCursor: false,
                               autofocus: true,
+                              isCursorAnimationEnabled: false,
                               defaultPinTheme: PinTheme(
                                   width: 46,
                                   height: 53,
@@ -141,10 +150,12 @@ class _VerifyOtpWidgetState extends State<VerifyOtpWidget> {
                                   decoration: BoxDecoration(
                                       color: Colors.transparent,
                                       border: Border.all(color: Colors.deepOrange),
-                                      borderRadius: BorderRadius.circular(5))),
+                                      borderRadius: BorderRadius.circular(40))),
                               focusedPinTheme: focusedPinTheme,
                               errorText: '',
+                              preFilledWidget: SvgPicture.asset(Assets.assets_icons_custom_cursor_svg),
                               submittedPinTheme: submittedPinTheme,
+                              followingPinTheme: followingPinTheme,
                               pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
                               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                               keyboardType: TextInputType.number,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class SwitchButton extends StatefulWidget{
    bool switchValue;
    Function()? onTap;
@@ -21,7 +22,7 @@ class _SwitchButtonState extends State<SwitchButton> {
         height: 32.0,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15.0),
-          color: widget.switchValue ? Colors.green : Colors.grey,
+          color: widget.switchValue ? Colors.grey.shade800 : Colors.grey,
         ),
         child: Stack(
           children: <Widget>[
@@ -33,10 +34,17 @@ class _SwitchButtonState extends State<SwitchButton> {
               child: Container(
                 width: 30.0,
                 height: 30.0,
-                decoration: const BoxDecoration(
+                decoration:  BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Colors.white,
+                  color: widget.switchValue ? Colors.green : Colors.white,
                 ),
+                child: widget.switchValue
+                    ? const Icon(
+                  Icons.check,
+                  color: Colors.black,
+                  size: 16.0,
+                )
+                    : null,
               ),
             ),
           ],

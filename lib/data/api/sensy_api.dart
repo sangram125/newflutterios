@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:dor_companion/data/models/get_issue_item_model.dart';
 import 'package:dor_companion/data/models/list_cluster.dart';
@@ -11,6 +13,8 @@ import '../models/models.dart';
 part 'sensy_api.g.dart';
 
 class ApiEndpoints {
+  // static const apiBase = "https://sensara.co/api/";
+  // static const apiBase = "https://api-360-preprod.streamboxmedia.com/api/";
   static const apiBase = "https://api-360-prod.streamboxmedia.com/api/";
   static const requestOtp = "v4/subscriber/otp";
   static const requestCrmOtp = "v4/subscriber/crmcom_otp";
@@ -31,6 +35,7 @@ class ApiEndpoints {
   static const fetchMediaDetail = "v4/epg/detail/{item_type}/{item_id}";
   static const fetchSuggestedRows = "v4/epg/facets";
   static const favorites = "v2/user/favorites";
+  static const fetchFavorites = "v4/user/favorites";
   static const watchlist = "v2/user/watchlist";
   static const seen = "v2/user/seen";
   static const notInterested = "v2/user/not_interested";
@@ -44,6 +49,7 @@ class ApiEndpoints {
   static const forwardToTvDevice = "v4/subscriber/device/{device_id}/notify";
   static const genAISearch = "/v4/chatbot/audio_dialog";
   static const gamePage = "https://page.api.hungama.com/v1/page";
+  static const fetchMoodDetail = "v4/epg/detail/mood/{mood}";
   // API Endpoints
   static const String issueEndpoint = '/api/resource/Issue';
   static const String ticketItemEndpoint = '/resource/Ticket Item';
@@ -108,6 +114,9 @@ abstract class SensyApi {
   @GET(ApiEndpoints.fetchMediaDetail)
   Future<MediaDetail> fetchMediaDetail(@Path("item_type") String itemType,
       @Path("item_id") String itemId);
+
+  @GET(ApiEndpoints.fetchFavorites)
+  Future<FavoriteResponse> fetchFav();
 
   @GET(ApiEndpoints.fetchMediaDetail)
   Future<MediaDetail> fetchPaginatedMediaDetail(
@@ -222,4 +231,7 @@ abstract class SensyApi {
   @POST(ApiEndpoints.genAISearch)
   Future<ChatAction> fetchAISearchResult(
       @Field("message") String message, @Field('chat_history') String history);
+
+  @GET(ApiEndpoints.fetchMoodDetail)
+  Future<MediaDetail> fetchMoodDetail(String mood);
 }

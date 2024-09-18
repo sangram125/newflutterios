@@ -16,12 +16,14 @@ class LiveTvState {
   LiveTvState._internal();
 
   ValueNotifier<List<StandardPromotion>> banners = ValueNotifier([]);
+  ValueNotifier<List<MediaDetail>> favChannelData = ValueNotifier([]);
   ValueNotifier<List<StandardPromotion>> bannersWeb = ValueNotifier([]);
   ValueNotifier<List<Channel>> channels = ValueNotifier([]);
   ValueNotifier<List<Channel>> filteredChannels = ValueNotifier([]);
   ValueNotifier<List<MediaRow>> rows = ValueNotifier([]);
   ValueNotifier<List<MediaRow>> loadingPageRows = ValueNotifier([]);
   ValueNotifier<GenreList> genres = ValueNotifier(const GenreList(list: []));
+  ValueNotifier<GenreList> genreWithImages = ValueNotifier(const GenreList(list: []));
   ValueNotifier<LanguageList> languages = ValueNotifier(const LanguageList(list: []));
   ValueNotifier<List> selectedFilterList = ValueNotifier([]);
   ValueNotifier<List<Channel>> channelListForGenre = ValueNotifier([]);
@@ -37,7 +39,7 @@ class LiveTvState {
   ValueNotifier<int> currentPage = ValueNotifier(1);
   ValueNotifier<int> currentView = ValueNotifier(0);
   ValueNotifier<ScrollController> scrollController = ValueNotifier(ScrollController());
-  ValueNotifier<CarouselController> buttonCarouselController = ValueNotifier(CarouselController());
+  ValueNotifier<CarouselSliderController> buttonCarouselController = ValueNotifier(CarouselSliderController());
   ValueNotifier<bool> isTVGuideTap = ValueNotifier(false);
   ValueNotifier<bool> isShows = ValueNotifier(false);
   ValueNotifier<ListCluster> liveNewsRow = ValueNotifier( ListCluster(cluster: []));
@@ -110,6 +112,7 @@ class HomeState {
   ValueNotifier<List<StandardPromotion>> banners = ValueNotifier([]);
   ValueNotifier<List<StandardPromotion>> bannersWeb = ValueNotifier([]);
   ValueNotifier<List<MediaRow>> rows = ValueNotifier([]);
+  ValueNotifier<List<MediaRow>> exploreOttRows = ValueNotifier([]);
   ValueNotifier<bool> isBannersError = ValueNotifier(false);
   ValueNotifier<bool> isBannersWebError = ValueNotifier(false);
   ValueNotifier<bool> isError = ValueNotifier(false);
@@ -118,4 +121,8 @@ class HomeState {
   ValueNotifier<int> totalPages = ValueNotifier(1);
   ValueNotifier<int> currentPage = ValueNotifier(1);
   ValueNotifier<ScrollController> scrollController = ValueNotifier(ScrollController());
+  ValueNotifier<GenreList> genres = ValueNotifier(const GenreList(list: []));
+  ValueNotifier<bool> isGenresError = ValueNotifier(false);
+  ValueNotifier<List<MediaRow>> moodRows = ValueNotifier([]);
+  ValueNotifier<List<MediaRow>> genreRows = ValueNotifier([]);
 }

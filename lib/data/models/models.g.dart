@@ -555,3 +555,29 @@ Channel _$ChannelFromJson(Map<String, dynamic> json) => Channel(
   isActive: json['is_active'] as bool? ?? false,
   slug: json['slug'] as String? ?? '',
 );
+
+FavoriteResponse _$FavoriteResponseFromJson(Map<String, dynamic> json) => FavoriteResponse(
+  result: (json['result'] as List<dynamic>?)
+      ?.map((e) => FavoriteResult.fromJson(e as Map<String, dynamic>))
+      .toList() ??
+      const [],
+);
+
+Map<String, dynamic> _$FavoriteResponseToJson(FavoriteResponse instance) =>
+    <String, dynamic>{
+      'result': instance.result.map((e) => e.toJson()).toList(),
+    };
+
+FavoriteResult _$FavoriteResultFromJson(Map<String, dynamic> json) => FavoriteResult(
+  itemType: json['item_type'] as String,
+  itemIds: (json['item_ids'] as List<dynamic>?)
+      ?.map((e) => e as String)
+      .toList() ??
+      const [],
+);
+
+Map<String, dynamic> _$FavoriteResultToJson(FavoriteResult instance) =>
+    <String, dynamic>{
+      'item_type': instance.itemType,
+      'item_ids': instance.itemIds,
+    };

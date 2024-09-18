@@ -1,8 +1,11 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:dor_companion/app_router.dart';
 import 'package:dor_companion/data/api/sensy_api.dart';
+import 'package:dor_companion/data/app_state.dart';
 import 'package:dor_companion/data/models/models.dart';
+import 'package:dor_companion/data/models/search_suggestions.dart';
 import 'package:dor_companion/data/models/user_interests.dart';
 import 'package:dor_companion/firebase_analytics/firebase_analytics.dart';
 import 'package:dor_companion/injection/injection.dart';
@@ -13,16 +16,23 @@ import 'package:dor_companion/mobile/profile/profile_main_views.dart';
 import 'package:dor_companion/mobile/game/game_view.dart';
 import 'package:dor_companion/mobile/search/search_controller/search_controller.dart';
 import 'package:dor_companion/mobile/widgets/live_tv_view.dart';
+import 'package:dor_companion/redesign/live_tv/live_tv_screen.dart';
+import 'package:dor_companion/redesign/search/search.dart';
+import 'package:dor_companion/redesign/search/search_view_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:get_it/get_it.dart';
+
 import 'package:http/http.dart' as http;
 import '../../mobile/widgets/home_view.dart';
+import '../../redesign/sports/sports_screen.dart';
 import '../../utils.dart';
 import 'languages.dart';
 import 'user_account.dart';
-
+import '../../../widgets/custom_search_widget.dart' as se;
 class HomePageProvider extends GetxController {
   static int count=0;
   static String action_id="";
@@ -45,13 +55,13 @@ class HomePageProvider extends GetxController {
   AnalyticsEvent eventCall = AnalyticsEvent();
   RxInt page = 0.obs;
   final searchController = Get.put(SearchViewController());
-
+  final getIts = GetIt.instance;
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
     pageController = PageController();
-    _fetchData();
+    _fetchData;
     getIt<UserAccount>().setOnHome(false);
     getIt<UserAccount>().addListener(_fetchData);
     getIt<UserInterestsChangeNotifier>().addListener(_fetchData);
@@ -60,7 +70,9 @@ class HomePageProvider extends GetxController {
     searchController.fetchData("row", "search-trending");
     // subscribedPlans = getIt<UserAccount>().customer?.activePlans;
     _checkInternetConnectionAndSpeed();
+
   }
+
   void gotoPage(int index) {
     pageController.jumpToPage(index);
     page.value = index;
@@ -70,7 +82,8 @@ class HomePageProvider extends GetxController {
     _setupTabs();
     setupHomePage();
   }
-  _setupTabs() {
+
+  _setupTabs()    {
     tabs = [
       // HomeMainView(
       //   itemType: "page",
@@ -91,11 +104,8 @@ class HomePageProvider extends GetxController {
         //     getIt<SensyApi>().fetchMediaDetail("tab", "news"),
         key: Key("news $_incrementCount"),
       ),
-      LiveTvTab(
-        //controller: controller,
-        // mediaDetailFuture: () =>
-        //     getIt<SensyApi>().fetchChannelsSchedule('567,36'),
-        key: Key("guide $_incrementCount"),
+      LiveTvScreenTab(
+        key: Key("guide $_incrementCount")
       ),
       // HomeTab(
       //   //controller: controller,
@@ -103,14 +113,23 @@ class HomePageProvider extends GetxController {
       //       getIt<SensyApi>().fetchMediaDetail("tab", "channels"),
       //   key: Key("channels $_incrementCount"),
       // ),
-      SportsTab(
+      SportsScreen(
         itemType: "sports",
-        //controller: controller,
         // mediaDetailFuture: () =>
         //     getIt<SensyApi>().fetchMediaDetail("tab", "sports"),
         key: Key("sports $_incrementCount"),
       ),
-      const ProfileMainScreen(),
+      // se.showSearch(
+      //   context: getIt<AppRouter>().routerDelegate.navigatorKey.currentContext!,
+      //   delegate: SearchViewPage(
+      //     sensyApi: getIt<SensyApi>(),
+      //     searchSuggestion: getIt<SearchSuggestions>(),
+      //   ),
+      // ),
+      SearchTabView(
+        sensyApi: getIt<SensyApi>(),
+        searchSuggestion: getIt<SearchSuggestions>(),
+      ),
       HomeTab(
         mediaDetailFuture: () =>
             getIt<SensyApi>().fetchMediaDetail("tab", "movies"),

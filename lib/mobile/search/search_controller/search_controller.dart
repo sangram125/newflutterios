@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:dor_companion/data/api/sensy_api.dart';
+import 'package:dor_companion/data/app_state.dart';
 import 'package:dor_companion/data/models/search_suggestions.dart';
 import 'package:dor_companion/utils.dart';
 import 'package:flutter/foundation.dart';
@@ -37,6 +38,7 @@ class SearchViewController extends GetxController {
     return getIt<SensyApi>().fetchMediaDetail(itemId, itemType).then((value) {
       if (itemType == 'find') {
         mediaItem.value = value.mediaRows[0].mediaItems;
+        homeState.genreRows.value = value.mediaRows;
       } else {
         trendingMediaItem.value = value.mediaRows[0].mediaItems;
       }
