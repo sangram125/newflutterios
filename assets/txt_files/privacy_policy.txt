@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    policy{ text-align: justify;
+    color: white; font-size: 17px;
+    font-family: Roboto;
+    font-weight: 400;
+    padding-top: 8px;
+    }
+details {
+  width: 620px;
+}
+
+.de {
+  padding: 2px 6px;
+  width: 15em;
+  background-color: #ddd;
+  border: none;
+  box-shadow: 3px 3px 4px black;
+  cursor: pointer;
+  list-style: none;
+}
+
+details > p {
+  border-radius: 0 0 10px 10px;
+  background-color: #ddd;
+  padding: 2px 6px;
+  margin: 0;
+  box-shadow: 3px 3px 4px black;
+}
+
+
+  </style>
+</head>
+<body>
+<div style="padding-left:10px; padding-right:5px">
+<div style="width: 100%; height: 100%; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
+<div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: flex">
+<div style="color: white; font-size: 20px; font-family: Roboto; font-weight: 600; word-wrap: break-word">Privacy Policy</div>
+</div>
+<div style="text-align: justify;
+                color: white; font-size: 17px;
+                font-family: Roboto;
+                font-weight: 400;
+                padding-top: 8px;" >At Streambox Media Private Limited, a company organised under the laws of India, with its principal place of business at 21/14, Block-A, PH-2 Naraina Industrial Area Naraina Industrial Estate New Delhi 110028 INDIA (referred to as “Company,” “us” or “we”), we recognize that your privacy is important. This Policy discloses the privacy practices for the Company’s family of applications and/or Website i.e., https://streamboxmedia.com/ (collectively, the “Site”), as well as related products and services we may offer to you (collectively referred to as the “Services”). This Policy also covers how personal and other information that we receive or collect about you is treated. Please read the information below to learn the following regarding your use of this Site.
+</div>
+
+
+<div style="text-align: justify;
+                    color: white; font-size: 17px;
+                    font-family: Roboto;
+                    font-weight: 400;
+                    padding-top: 8px;">You acknowledge that this Privacy Policy is designed to be read in connection with the Site Terms of Use (https://streamboxmedia.com/policy), and that by accessing or using our Site, you agree to be bound by the Site’s terms and conditions, as well as this Privacy Policy.
+</div>
+
+<div style="text-align: justify;
+                     color: white; font-size: 17px;
+                     font-family: Roboto;
+                     font-weight: 400;
+                     padding-top: 8px;">We reserve the right to change this Privacy Policy from time to time. Any significant changes we may make to our Privacy Policy in the future will be promptly notified to users by posting the relevant terms in a prominent position on the webpage. Your continued use of the Site and or Services available through this Site after such modifications will constitute your: (a) acknowledgment of the modified Policy; and (b) your agreement to abide and be bound by that Policy.
+</div>
+
+
+<div style="text-align: justify;
+                     color: white; font-size: 17px;
+                     font-family: Roboto;
+                     font-weight: 400;
+                     padding-top: 8px;">If you have any questions about this Policy, please feel free to contact us at info@streamboxmedia.com ;
+</div>
+
+
+<div style="text-align: justify;
+                     color: white; font-size: 17px;
+                     font-family: Roboto;
+                     font-weight: 400;
+                     padding-top: 8px;">IMPORTANT: BY USING THE SITE AND/OR OFFERINGS AVAILABLE ON THIS SITE, YOU GIVE YOUR CONSENT THAT ALL PERSONAL DATA YOU SUBMIT MAY BE PROCESSED BY US IN THE MANNER AND FOR THE PURPOSES DESCRIBED BELOW. IF YOU DO NOT AGREE TO THESE TERMS AND CONDITIONS, DO NOT USE THE SITE.
+</div>
+
+
+<div style="text-align: justify;
+                     color: white; font-size: 17px;
+                     font-family: Roboto;
+                     font-weight: 400;
+                     padding-top: 8px;">You must be at least 18 years old to have our permission to use this Site. Our policy is that we do not knowingly collect, use or disclose PII about children under the age of 18. You must have attained the age of majority to be able to use and access our Services. As a parent or legal guardian, please do not allow your minors under your care to submit Personal Information to us. In the event that such PII of minor is disclosed to us, you hereby consent to the processing of the minor’s PII and accept and agree to be bound by this Privacy Policy and take responsibility for his or her actions.
+</div>
+
+<div style="text-align: justify;
+                      color: white; font-size: 17px;
+                      font-family: Roboto;
+                      font-weight: 400;
+                      padding-top: 8px;">You should also be aware that when PII is voluntarily disclosed (i.e., your name, email address, etc.) in the discussion forums or other public areas on this Site, that information, along with any information disclosed in your communication, can be collected and used by third parties and may result in unsolicited messages (including unwanted spam messages) from third parties. Such activities are beyond our control and this Policy does not apply to such information. Please consult our Site Terms of Use for our Site conduct policies.
+</div>
+</div>
+
+<div style="color: white; font-size: 20px; font-family: Roboto; font-weight: 600; word-wrap: break-word";padding-top: 12px;>Table of Contents</div>
+<details>
+  <summary style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; text-decoration: underline; word-wrap: break-word">Information We Collect</summary>
+  <p style="padding-top: 8px;">
+
+    We collect two types of information about our users: Personally Identifiable Information (“PII”) and Aggregate Information.
+    </p>
+    <p>
+    Personally Identifiable Information:   This refers to information that lets us know the specifics of who you are. When you engage in certain activities on this Site in any manner, such as registering for an account, subscribing to our services, downloading or purchasing a product or service, downloading any content, submitting content and/or posting content, or sending us feedback, we may ask you to provide or collect certain information about yourself including without limitation your first and last name, age, email address, billing address (including ZIP code), IP address, payment details, preferences, devices, device id, contact details, gender, location, pin code, area code, occupation program preferences, language, preferred social media, liked pages, searched items and other identifying information.
+     </p>
+        <p>
+    Aggregate Information:   This refers to information that does not by itself identify a specific individual. We gather certain information about you based upon where you visit on our Site and what other sites may have directed you to us. This information, which is collected in a variety of different ways, is compiled and analysed on both a personal and an aggregated basis. This information may include the Website’s Uniform Resource Locator (“URL”) that points to the site you just came from, which URL you go to after visiting our Site, what browser you are using, and your Internet Protocol (“IP”) address.
+  </p>
+</details>
+
+
+
+
+<details>
+  <summary style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; text-decoration: underline; word-wrap: break-word">How We Collect and Use Information</summary>
+  <p style="padding-top: 8px;">
+    We do not collect any PII about you unless you voluntarily provide it to us. However, you may be required to provide certain PII to us when you elect to use certain products or services available on the Site. These may include: (a) registering for an account on our Site; (b) to help facilitate in-app purchases & withdrawals and make subscribed and paid content available to you; (c) to provide you with marketing communications, advertising, news, special offers, and general information about the products and services; (d) to communicate with you or sending us an email message; or (e) submitting a form or transmitting other information by telephone or letter; (f) to enhance the quality of the Services including gaming related services that we provide and to improve the effectiveness to better tailor our Services to your interests and needs; (g) to validate, authorize and map a specific profile with an authorized user; (h) for the performance of a contractual obligation; (i) to provide and process service requests initiated by you; (j) to facilitate your participation in various contests or programs conducted by the Company, affiliates, subsidiaries, or agents on the Platform. When processing certain information, we encrypt the transaction, using Secure Socket Layer (SSL) encryption technology, in order to prevent your PII from being stolen or intercepted.
+     </p>
+     <p>
+    We may collect information regarding purchases, downloads, activity in the Site, the content you watch, and where you watch it to tailor features and offer personalized recommendations and to send you notifications. We may use information about the movies and TV shows you purchase and download to ensure that the advertising, where available, are relevant to you.
+     </p>
+     <p>
+    We may receive PII either due to your voluntary use of the Site and Services through any connected social media application or social media account and We may collect any information such as user ID, username, and any information You have made public with the social media account.
+</p>
+<p>
+    We will primarily use your PII to provide products or services to you. We will also use certain forms of PII to enhance the operation of our Site, improve our internal marketing and promotional efforts, statistically analyze Site use, improve our product and service offerings, and customize our Site’s content, layout, and services. We may use PII to deliver information to you and to contact you regarding administrative notices. Finally, we may use your PII to resolve disputes, troubleshoot problems and enforce our agreements with you, including our Site Terms of Use, and this Privacy Policy.
+</p>
+<p>
+    We may also collect certain Aggregate Information. For example, we may use your IP address to diagnose problems with our servers, software, to administer our Site and to gather demographic information.
+</p>
+<p>
+    We may also retain information associated with your purchases, downloads, and viewing activity on the Site for different lengths of time depending on business need, contractual obligations, and legal requirements. We may also retain a record of your purchase and downloads of content for at least as long as you continue to use the Site to allow you to download that content in line with our applicable terms. We may also retain other information such as browsing activity and searches.
+  </p>
+</details>
+
+
+
+<details>
+  <summary style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; text-decoration: underline; word-wrap: break-word">Release of Information</summary>
+  <p style="padding-top: 8px;">
+
+We do provide some of our products and services through contractual arrangements made with affiliates, service providers, partners and other third parties (“Service Partners”). We and our Service Partners may need to use some PII in order to perform tasks between our respective sites, or to deliver products or services to you. We will encourage our Service Partners to adopt and promote strong privacy policies. However, the use of your PII by our Service Partners is governed by the respective privacy policies of those providers and is not subject to our control. Except as otherwise discussed in this Privacy Policy, this document only addresses the use and disclosure of information we collect from you. Other Sites accessible through this Site, including our Advertising and Service Partners, have their own privacy policies and data collection, use and disclosure practices. We are not responsible for the policies or practices of third parties.
+</p>
+<p>
+Occasionally, we may be required by law enforcement or judicial authorities to provide PII to the appropriate governmental authorities. In such cases, we will disclose PII upon receipt of a statutory regulation, court order, subpoena, or to cooperate with a law enforcement investigation. We fully cooperate with law enforcement agencies in identifying those who use our services for illegal activities. We reserve the right to report to law enforcement agencies any activities that we in good faith believe to be unlawful.
+</p>
+<p>
+We may also provide Aggregate Information about our customers’ sales, traffic patterns, and related Site information to third party advertisers, but these statistics do not include any PII.
+</p>
+<p>
+We may share the PII (and other information) with our affiliates and/or third-parties when necessary, to provide you with the service infrastructure and the related, to provide advertising and promotional services, to provide search results and links (including paid listings and links), to process financial transactions, to provide customer service, and any such relevant and necessary purposes which are essential for us making our Services available to you. We will never display, rent, or sell your personally identifiable information to others.
+</p>
+<p>
+We may have to disclose your Personal Information for the following purposes including without limitation: (a) As required by law, such as to comply with a judicial order, executive orders,
+requirement by a law enforcement authority, or by other legal processes; (b) To protect and guard the rights and interests of the Company; (c) When we are required to provide information to the companies that provide products or services on our behalf; (unless we notify you otherwise, these companies do not have the right to use your personally identifiable information); (d) When we believe in good faith that disclosure is necessary to protect our rights, protect your safety or the safety of others, or, investigate fraud or crime; (e) If we (or our affiliates) are involved in a merger, acquisition, or sale of all or substantially all of its assets or equity.
+  </p>
+</details>
+
+
+
+<details>
+  <summary style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; text-decoration: underline; word-wrap: break-word">Updating and Correcting Information</summary>
+ <p style="padding-top: 8px;">
+We believe you should have the ability to access and edit the PII that you have provided to us. You may change any of your PII in your account online at any time by linking to your account in accordance with instructions posted elsewhere on this Site. You may also access and correct your personal information and privacy preferences by emailing us at info@streamboxmedia.com or writing to us at:
+</p>
+<div>Attn: Chief Technology Officer</div>
+<div>info@streamboxmedia.com</div>
+<p>
+Please include your name, address, and/or email address when you contact us.
+</p>
+<p>
+We encourage you to promptly update your PII if it changes. Also, depending on your location, you may have certain additional rights with respect to your information such as deletion (including the right to have the Company delete your personal information, except information we are required to retain, by contacting us at the address listed above), or we may delete your data if we are instructed to do so by our customers who export your personal information to us, except for information we are required to retain; and withdrawal of consent or object to processing (including, in limited circumstances, the right to ask the Company to stop processing your personal data, by contacting us at the address listed above).
+  </p>
+</details>
+
+
+
+
+
+<details>
+  <summary style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; text-decoration: underline; word-wrap: break-word">User Rights, Choices on Collection and Use of Information</summary>
+  <p style="padding-top: 8px;">
+If you indicated upon registration that you are interested in receiving offers or information from us and our partners, then we may from time to time, send you emails, call you or send you direct mail about products and services that may be of interest to you. Only Company (or agents working on behalf of Company and under confidentiality agreements) will send you these solicitations, and only if you have previously indicated that you wish to receive them. If you change your mind after giving consent to receive these solicitations, you can “opt-out” by accessing your account online editing your account information to no longer receive such offers and mailings.
+</p>
+<p>
+You also have choices with respect to cookies, as described above. By modifying your browser preferences, you have the choice to accept all cookies, to be notified when a cookie is set, or to reject all cookies. If you choose to reject all cookies some parts of our Site may not work properly in your case.
+</p>
+<p>
+You have a number of rights in relation to the information (including PII) we hold about you. These rights include: (a) The right to access the information we hold about you, and to obtain details of processing; (b) The right to withdraw your consent to our continued processing of the information, at any point of time, subject only to any legitimate reason for continued processing in certain circumstances; (c) The right to edit your account information and preferences available with us; (d) The right to seek from us your personal data to be provided to another company; (e) The right to erasure of any personal data that we process, in certain circumstances, to the extent permissible in applicable law, and feasible; and, (f) The right to move your information to another service provider, in a compatible format. This will only cover such information which we have received from you.
+  </p>
+</details>
+
+
+
+
+<details>
+  <summary style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; text-decoration: underline; word-wrap: break-word">Cookies</summary>
+  <p style="padding-top: 8px;">
+Depending on how you use our Site, we may store cookies on your computer in order to collect certain aggregate data about our users and to customize certain aspects of your specific user experience. A cookie is a small data text file which is stored on your computer that uniquely identifies your browser. Cookies may also include more personalized information, such as your IP address, browser type, the server your computer is logged onto, the area code and ZIP code associated with your server, and your first name to welcome you back to our Site.
+</p>
+<p>
+We use cookies to monitor how people use our website, including estimating audience size, consumer behavior, user navigation and patterns of use, to help us provide you with a better service. Cookies also make it easier for you to use the website on future visits and allow us to personalize the content of the website to you by recording information about your preferences. We use both persistent cookies (which expire on a specified date) and session cookies (which expire when you close your browser). Please note that third parties (including, for example providers of external services like web traffic analysis services such as Google Analytics, or advertising services and vendors) may also use cookies, over which we have no control. These cookies
+are likely to be analytical/performance cookies or targeting cookies.
+</p>
+<p>
+We may use cookies to perform tasks such as: monitoring aggregate site usage metrics, storing and remembering your passwords (if you allow us to do so), storing account and advertising preferences that you have set, and personalizing the Services we make available to you. Most browsers are initially set up to accept cookies, but you can reset your browser to refuse all cookies or to indicate when a cookie is being sent. However, some aspects of the Site may not function properly if you elect to disable cookies.
+  </p>
+</details>
+
+
+
+<details>
+  <summary style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; text-decoration: underline; word-wrap: break-word">Security of Your PII</summary>
+  <p style="padding-top: 8px;">
+  At our Site you can be assured that your PII is secure, consistent with current industry standards. We strive to take appropriate security measures to protect against unauthorized access to or unauthorized alteration, disclosure or destruction of your PII. For example:
+</p>
+<p>
+     • We work hard to ensure that the data we collect is reliable, accurate, complete and current. We encrypt all PII, in order to prevent unauthorized parties from viewing such information when it is transmitted to us. We also only keep collected information indefinitely and use it only for the purposes for which it was collected or to comply with any applicable legal or ethical reporting or
+     document retention requirements.
+</p>
+<p>
+     • We limit access to PII only to specific employees, contractors and agents who have a reasonable need to come into contact with your information. For example, we may provide members of our technical support team with limited access to your account in order to allow them to troubleshoot problems you may be having with the Site.
+</p>
+<p>
+     • We also employ a number of physical, electronic, and procedural safeguards to protect PII. Our secure servers and our data centers are protected by industry-standard encryption, and our servers reside behind firewalls and employ high-level password protection.
+</p>
+<p>
+     • Finally, access by you to your PII is available through a password and unique customer ID selected by you. This password is encrypted. We recommend that you do not divulge your password to anyone.
+</p>
+<p>
+     As a result, while we strive to protect your PII, you acknowledge that: (a) there are security and privacy limitations inherent to the Internet which are beyond our control; and (b) the security, integrity and privacy of any and all information and data exchanged between you and us through this Site cannot be guaranteed.
+  </p>
+</details>
+
+
+
+
+<details>
+  <summary style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; text-decoration: underline; word-wrap: break-word">Third Party Services</summary>
+  <p style="padding-top: 8px;">
+We may allow you to connect a YouTube channel to your account on the Site. In this case, we will access certain information from YouTube about your channel by using YouTube API Services. We may store your channel ID for reference when creating licenses, which will be treated in accordance with this Privacy Policy. We may share your channel id to our content ID licensing partner who facilitates our content ID licensing. If you decide to connect a YouTube channel to your Dor account, you will also be subject to Google’s privacy policy available here: http://www.google.com/policies/privacy. When disconnecting a YouTube channel on our Site, We will delete the stored data associated with that YouTube channel.
+</p>
+<p>
+You can also revoke access to the data we collect via the YouTube API Services by changing your security settings on Google here: https://security.google.com/settings/security/permissions.
+If you have any questions, concerns or inquiries about our Privacy Policy, or our use of your PII, or our privacy practices, please contact us at info@streamboxmedia.com. You can also reach our Privacy Compliance Officer by sending written correspondence to:
+</p>
+
+
+<div>Attn: Chief Technology Officer</div>
+<div>info@streamboxmedia.com</div>
+
+
+</details>
+
+</div>
+</body>
+</html>

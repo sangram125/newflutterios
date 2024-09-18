@@ -1,0 +1,6 @@
+'<div style="width: 100%; height: 100%; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">'
+                                              '<div style="color: white; font-size: 20px; font-family: Roboto; font-weight: 600; word-wrap: break-word">The Fabulous story of us </div>'
+                                          '<div style="width: 361px; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word">At dor, we aim to give you the ultimate platform to seamlessly thread your way through endless content across OTT platforms, with one easy subscription, designed for everyone. </div>'
+
+                                              '<div style="width: 361px; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word">No matter what your taste, or where you live, we give you access to the best global and local content — top-rated TV series, critically-acclaimed feature films, Live TV, sports and news, in 12+ languages, all with one easy subscription. </div>'
+                                          '</div>';

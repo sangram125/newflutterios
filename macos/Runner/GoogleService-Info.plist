@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>677807102419-v6ae71n1jufp15b0jiksmphnf2tshpaq.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.677807102419-v6ae71n1jufp15b0jiksmphnf2tshpaq</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBys2jgTnpLboVHS6PADr-fLezl_mmVsPI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>677807102419</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>co.sensara.ditto</string>
+	<key>PROJECT_ID</key>
+	<string>dorplay-b3bcf</string>
+	<key>STORAGE_BUCKET</key>
+	<string>dorplay-b3bcf.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:677807102419:ios:b1ed54d779b20527013726</string>
+</dict>
+</plist>

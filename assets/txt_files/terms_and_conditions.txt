@@ -1,0 +1,180 @@
+<div style="padding-left:10px; padding-right:5px;">
+<div style="color: white; font-size: 20px; font-family: Roboto; font-weight: 600; word-wrap: break-word">Dor Terms of Service</div>
+
+<div style="color: white; font-size: 20px; font-family: Roboto; font-weight: 600; word-wrap: break-word;padding-top: 8px">1. Acceptance</div>
+
+
+    <p style=" width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+        These terms and conditions (“Agreement”) govern your use of the Dor Set-Top Box and website i.e.,
+        https://streamboxmedia.com/ (“Site”) which consolidates online video streaming services,
+        including all features and functionalities, our website, and any content and software applications associated with the Site (collectively, the “Service”).
+        By accessing or using the Service, you agree to be bound by this Agreement along with the privacy policy as given on
+        https://streamboxmedia.com/policy, which constitutes a legally binding agreement between you and Dor.
+        If you do not agree to all of the terms and conditions of this Agreement, please do not use the Service.
+    </p>
+    <p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+        This Agreement is published in accordance with the provisions of Rule 3 (1) of the Information Technology (Intermediaries Guidelines) Rules, 2011
+        that require publishing the rules and regulations, privacy policy and terms and conditions for access and/or usage of the Site.
+    </p>
+    <p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+        You must be at least 18 years old to use the Service. If you are under the relevant age of majority in your jurisdiction, you may access the Site
+        and the Services only in accordance with applicable laws which enable a minor to access such a service in your jurisdiction.
+        In India, in case you are less than 18 years of age, you shall only access the Service and Site after taking consent of your parent or guardian.
+    </p>
+    <p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+        For the purpose of this Agreement, the terms “You” “Your” or “User” shall mean any person, natural or legal who visits, accesses,
+        uses or browses the Site or Service. The term “We”, “Us”, “Our” or "Dor" shall mean Company having its registered office at
+        21/14, Block-A, PH-2 Naraina Industrial Area Naraina Industrial Estate New Delhi 110028 INDIA.
+    </p>
+
+
+    <div style="color: white; font-size: 20px; font-family: Roboto; font-weight: 600; word-wrap: break-word">2. Subscription</div>
+    <p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+    2.1  To access the Site and Service, you must become a member by providing your email address and creating a password and purchase a subscription by making such payments depending on the term and subscription plan as intimated by dor(“Subscription Package”). You agree to provide accurate, current, and complete information during the registration process and to update such information to keep it accurate, current, and complete. You are responsible for safeguarding your password. You agree not to disclose your password to any third party and to take sole responsibility for any activities or actions under your account, whether or not you have authorized such activities or actions.
+    </p><p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+    2.2  You must be subscribed to one of the Subscription Package subject to additional terms specified by Dor from time to time for continual use of the Site and Service. Depending on the Subscription Package, you will be required to make online payments through your credit card, debit card, net banking account or via any payment mode that is authorized and provided by dor.
+    </p><p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+    2.3  Dor reserves the right to modify or discontinue the Site and Services at its sole discretion with or without notice to you and such changes and/or modifications shall become effective immediately upon being posted/published on the Site herein. Further, dor reserves the right, at any time, with or without notice and without any liability to:
+<p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+    • Discontinue, replace, or modify a Subscription Package including the prices for such Subscription Package.
+        </p><p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+    • Change or reduce the channels or content that is provided under the Site and Services.
+        </p><p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+    • Take-down any data, information, content or material, without notice provided under the Site and Services.
+        </p><p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+    • Refrain from providing to you any content in the interest of national security or in the event of emergency / war or similar situation or if the content is anti-national, promotes political / religious propaganda, is against public policy, is banned or restricted from being distributed under any applicable law or otherwise determine that it is objectionable or obscene or is derogatory to any person or class of persons, hurts the religious sentiments of any religious group or infringes the privacy rights of any individual(s) or is not in the interest of dor's subscribers or the general public.
+        </p><p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+    2.4  Dor may invoice you for your use of the Services as per the selected plan and amount as decided by Dor. You are free to cancel your plan at any time. We also reserve the right to terminate your access to the Service for any reason. You will not be refunded for the plan, but You will not be charged after the current plan has been terminated.
+    </p><p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+    2.5  Any Services availed under this Agreement shall be strictly subject to a valid and undisputable invoice of payment by the User and its acceptance by dor. Any Services availed under this Agreement without payment under this clause unless otherwise agreed, shall be considered to be a breach of this Agreement and such use shall be considered as an infringement of the rights of dor and dor reserves the right to take any legal action.
+    </p>
+
+
+    <div style="color: white; font-size: 20px; font-family: Roboto; font-weight: 600; word-wrap: break-word">3. Site Use License</div>
+    <p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+3.1  The Service and any content accessed through the Service are for your personal and non-commercial use only and may not be shared with individuals beyond your household unless otherwise allowed by your Subscription Plan. During your Subscription Plan we grant you a limited, non-exclusive, nontransferable right to access the Service and Site. Except for the foregoing, no right, title or interest shall be transferred to you. You agree not to use the service for public performances.
+</p>
+<p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+
+3.2  Your access to and use of the Site is subject to this Agreement, privacy policy and all applicable laws, rules, and regulations in India.
+</p>
+<p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+3.3  You may access the Site primarily within the country in which you have established your account and only in geographic locations where we offer our service and have licensed such content. For the purpose of determining the taxes that will be charged over your Subscription Plan, we will use the IP address that is used when you sign up to the Service. The content that may be available will vary by geographic location and will change from time to time. The number of devices on which you may simultaneously watch depends on your chosen Subscription Plan.
+</p>
+<p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+3.4  The Service, including the content library given by third parties through the service, is regularly updated. You acknowledge and agree that the content provided by dor as part of the Service is being supplied by third parties and availability of such content is outside dor’s control and can be removed anytime.
+</p>
+<p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+3.5  The quality of the display of the Service may vary from device to device, and may be affected by a variety of factors, such as your location, the bandwidth available through and/or speed of your Internet connection. No claim shall be available against us in case the quality of the Service or content is not appropriate due to no fault of dor.
+</p>
+<p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+3.6  You hereby acknowledge and agree that this Service is developed by Dor and may solely be used for authorized streaming through the dor Set-Top Box and/or Site. You acknowledge that the use of the Service may require third party software that is subject to third party licenses. You agree that you may automatically receive updated versions of the Service and related third-party software.
+</p>
+
+    <div style="color: white; font-size: 20px; font-family: Roboto; font-weight: 600; word-wrap: break-word">4. Third-Party Websites</div>
+<p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+4.1  This Site and Service may contain links to other third-party websites owned and operated by third parties who are not related to dor (“Third-Party Website(s)”). dor shall not be responsible for: (a) the accuracy, relevance, legality, decency, and/or contents of such Third-Party Websites; and/or (b) the entities publishing such Third-Party Websites including their acts or omissions; and/or (c) any transaction (including monetary transaction) done by You therein; and/or (d) any fraud, loss, etc. that You may incur as a result of Your access and/or use thereof; and/or (e) breach of your privacy rights, personal rights or intellectual property rights.
+</p>
+<p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+4.2  The inclusion of any links, hyperlinks, etc. within the Site, does not constitute or imply an endorsement or recommendation by dor of any third-party, of the quality of any product, service, advice, information, or other materials displayed, purchased, or obtained by You.
+</p>
+<p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+4.3  Your access and usage of any Third-Party Websites is entirely at Your own risk. Dor shall not be a party to any transaction between You and a Third-Party Website. Your use of a Third-Party Website is subject to the terms of use of that Third-Party Website. If there is any inconsistency between the terms of use of a Third-Party Website and this Agreement, this Agreement shall prevail.
+</p>
+<p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+4.4  The Site and Service may contain third-party advertisements, promotions, etc. (that may or may not contain embedded hyperlinks or referral buttons to Third-Party Websites). The display of such advertising does not in any way imply an endorsement or recommendation by dor of the relevant advertiser, its products or services or any such Third-Party Website. You must refer directly to the relevant advertiser for all information regarding the advertiser and its products and/or services. dor accepts no responsibility for any interaction between You and the relevant third party and dor is released from any and all liability arising out of or in any way connected with such interaction and/or any defects, deficiencies, claims, etc. arising out of an advertiser’s products and/or services.
+</p>
+
+
+<div style="color: white; font-size: 20px; font-family: Roboto; font-weight: 600; word-wrap: break-word">5. Limitations of Use</div>
+    <p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+5.1  You agree not to engage in any of the following prohibited activities:
+    </p><p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+• Using the Service for any illegal or unauthorized purpose;
+    </p><p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+• Transmitting any material that contains viruses, Trojan horses, worms, time-bombs, or other harmful or disruptive components;
+    </p><p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+• Interfering with the security of the Service, including without limitation attempting to probe, scan, or test the vulnerability of the Service or to breach any security or authentication measures;
+    </p><p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+• Using the Service to transmit spam, chain letters, or any other unsolicited communications;
+    </p><p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+• Impersonating any person or entity or misrepresenting your affiliation with a person or entity;
+    </p><p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+• Using any automated means to access the Service, including without limitation robots, spiders, or scrapers;
+    </p><p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+• Modifying, adapting, translating, or reverse engineering any portion of the Service;
+    </p><p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+• Creating derivative works based on the Service;
+    </p><p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+• Selling, renting, sublicensing, or leasing any portion of the Service; or
+    </p><p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+• Using the Service in any manner that could damage, disable, overburden, or impair the Service.
+    </p><p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+• Violate the privacy right or personal right or confidential information of any person;
+    </p><p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+• Commit an act which could be construed as an act of cyber terrorism;
+    </p><p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+• Collect, store and/or identify private/personal information of any user or person;
+    </p><p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;";>
+• Facilitate personal attacks on other individuals, entity, groups, caste, religion, race or community;
+    </p><p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+• Stalk or otherwise harass another person or user;
+    </p><p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+5.2  You should not access or use the Site by means of any mechanism or technology which conceals your actual geo-location or provides incorrect details of your location (for example, use a virtual private network (VPN/Proxy) to access the Services). We will not be responsible or liable for any collection, storage or processing of your personal information or data if you use any mechanism or technology to access or use Site or Services which conceals your actual geo-location.
+    </p><p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+5.3  We may terminate or restrict your use of our Service if you violate these limitations of use or are engaged in illegal or fraudulent use of the Service.
+</p>
+
+
+
+<div style="color: white; font-size: 20px; font-family: Roboto; font-weight: 600; word-wrap: break-word">6. Intellectual Property Rights</div>
+    <p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+    6.1  User hereby grants Site a non-exclusive, royalty-free, perpetual, irrevocable license to use, reproduce, modify, adapt, publish, translate, create derivative works from, distribute, perform, and display all content uploaded to the Site by User. User represents and warrants that it has all necessary rights, including intellectual property rights, to grant such a license to Site. Site shall have the right, but not the obligation, to monitor, edit, or remove any content uploaded by User.
+       </p> <p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+    6.2  The Service, including the Site i.e. https://streamboxmedia.com/, and its entire contents, features, and functionality (including but not limited to all information, software, text, displays, images, video, and audio, and the design, selection, and arrangement thereof), are owned by dor, its licensors, or other third party providers of such material, as the case may be, and are protected by Indian copyright, trademark, patent, and other intellectual property or proprietary rights laws and equivalent International Laws.
+     </p> <p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+    6.3  You acknowledge that all legal and beneficial rights, title, and interest in Dor’s trademarks, trade names, service marks and logos, including the Site’s and Service’s trademarks, trade names, service marks and logos, shall be and shall remain the exclusive property of dor.
+     </p> <p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+    6.4  You expressly confirm not to, directly or indirectly, copy, reproduce, modify, edit, re-edit, amend, alter, vary, enhance, improve, upgrade, create derivative works, translate, adapt, abridge, delete, display, perform, publish, distribute, circulate, communicate to the public, disseminate, broadcast, transmit, sell, rent, lease, lend, assign, license, sub-license, disassemble, decompile, reverse engineer, market, promote, circulate, exploit, digitally alter or manipulate the Site and/or Services (including any and all information, software, text, displays, images, video, and audio, and the design therein), in whole or in part, in any manner whatsoever.
+    </p>
+
+<div style="color: white; font-size: 20px; font-family: Roboto; font-weight: 600; word-wrap: break-word">7. Indemnification</div>
+    <p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+    You agree to fully indemnify, defend and hold harmless Dor, its group companies, affiliates, associates, subsidiaries and group companies, and their respective directors, key managerial personnel, consultants, employees, officer, shareholders, agents, representative, sub-contractors, third party providers etc. from and against all losses, claims and damages including legal fees, resulting from: (a) Your violation of any condition of this Agreement; (b) Your violation of any third-party right, including without limitation any personal, privacy, or intellectual property right; (c) Your breach of any applicable laws; (d) any unauthorized, improper, illegal or wrongful use of Your account by any person, including a third-party, whether or not authorized or permitted by You; and (e) Your breach of any representation, warranty, covenant or undertaking under this Agreement or under applicable laws. This indemnification obligation will survive the expiry or termination of this Agreement and your use of the website.
+    </p>
+
+
+  <div style="color: white; font-size: 20px; font-family: Roboto; font-weight: 600; word-wrap: break-word">8. Disclaimer</div>
+      <p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+The Service is provided on an “as is” and “as available” basis. Dor expressly disclaims all warranties of any kind, whether express or implied, including, but not limited to, the implied warranties of merchantability, fitness for a particular purpose, and non-infringement.
+      </p>
+
+
+    <div style="color: white; font-size: 20px; font-family: Roboto; font-weight: 600; word-wrap: break-word">9. Limitation of Liability</div>
+         <p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+   UNDER NO CIRCUMSTANCES SHALL Dor BE LIABLE TO YOU OR TO ANY OTHER PERSON OR ENTITY FOR ANY INDIRECT, SPECIAL, INCIDENTAL, PUNITIVE, REMOTE OR CONSEQUENTIAL DAMAGES OR ANY OTHER DAMAGES WHATSOEVER (INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF PROFITS, LOSS OF GOODWILL, LOSS OF CONFIDENTIAL OR OTHER INFORMATION, BUSINESS INTERRUPTION, WORK STOPPAGE, COMPUTER FAILURE OR MALFUNCTION, PERSONAL INJURY, LOSS OF PRIVACY, FAILURE TO MEET ANY DUTY INCLUDING A DUTY OF GOOD FAITH OR OF REASONABLE CARE, NEGLIGENCE (WHETHER ACTIVE OR PASSIVE), AND ANY OTHER PECUNIARY OR OTHER LOSS WHATSOEVER) ARISING OUT OF OR IN ANY WAY RELATED TO THE USE OR INABILITY TO USE SERVICE, LOSS OF DATA OR OTHERWISE UNDER OR IN CONNECTION WITH ANY PROVISION OF THESE TERMS, EVEN IN THE EVENT OF FAULT, TORT (INCLUDING NEGLIGENCE, AND GROSS NEGLIGENCE), STRICT LIABILITY, BREACH OF CONTRACT, OR BREACH OF WARRANTY BY dor, AND EVEN IF dor HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+         </p>
+
+
+    <div style="color: white; font-size: 20px; font-family: Roboto; font-weight: 600; word-wrap: break-word">10. Termination</div>
+            <p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+Dor reserves the right to suspend or terminate your access to the Service at any time for any reason, without prior notice or liability to you.
+            </p>
+
+
+<div style="color: white; font-size: 20px; font-family: Roboto; font-weight: 600; word-wrap: break-word">11. General</div>
+            <p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+11.1  Class Action Waiver: WHERE PERMITTED UNDER THE APPLICABLE LAW, YOU AGREE THAT YOU MAY BRING CLAIMS AGAINST THE OTHER ONLY IN YOUR INDIVIDUAL CAPACITY, AND NOT AS A PLAINTIFF OR CLASS MEMBER IN ANY PURPORTED CLASS OR REPRESENTATIVE PROCEEDING. Further, where permitted under the applicable law, unless agreed otherwise, the court may not consolidate more than one person’s claims with your claims, and may not otherwise preside over any form of a representative or class proceeding.
+ </p><p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+11.2  Force Majeure: You agree that Dor shall be under no liability whatsoever to You in the event of non-availability of the Site, Service or any portion thereof occasioned by an act of God, war, disease, epidemic, pandemic, revolution, riot, civil commotion, strike, lockout, flood, fire, satellite failure, network failures, server failures, failure of any public utility, terrorist attack, network maintenance, Site maintenance, server maintenance, or any other cause whatsoever beyond the control of dor.
+ </p><p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+11.3  Severability: In the event that any term, condition, or provision of this Agreement is held to be a violation of any applicable law, statute, or regulation, the rest of the Agreement shall remain in full force and effect as if such term, condition, or provision had not originally been contained in this Agreement. 11.4.             Survival: You confirm that Your representations, warranties, undertakings and covenants, and the clauses relating to indemnities, limitation of liability, grant of license, governing law, confidentiality, and those provisions that by their nature, are intended to survive termination or expiry of this Agreement, shall survive termination or expiry thereof.
+ </p><p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+11.5  Waiver: Any express waiver or failure to exercise promptly any right under this Agreement will not create a continuing waiver or any expectation of non-enforcement.
+ </p><p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+11.6  Governing Law: This Agreement shall be governed by and construed in accordance with the laws of India and be subject to the exclusive jurisdiction of the Courts at Mumbai, without giving effect to any principles of conflicts of law.
+ </p><p style="width: 100%; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;">
+11.7  Electronic Communications: We will send you information relating to your membership, inter alia, payment authorizations, invoices, changes in password or Payment Method, confirmation messages, notices) in electronic form only, for example via emails to your email address provided during registration.
+            </p>
+
+ </div>

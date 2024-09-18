@@ -1,0 +1,14 @@
+<div style="padding-left:10px; padding-right:5px;">
+<div style="width: 100%; height: 100%; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
+    <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: flex">
+       <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex; color: white; font-family: Roboto;">
+           <div style="font-size: 20px; font-weight: 600; word-wrap: break-word;">The Fabulous story of us</div>
+           <div style="width: 361px; font-size: 17px; font-weight: 400; word-wrap: break-word; padding-top: 8px;">At Dor, we aim to give you the ultimate platform to seamlessly thread your way through endless content across OTT platforms, with one easy subscription, designed for everyone.</div>
+       </div>
+    </div>
+    <div style="width: 361px; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;padding-top: 16px;">No matter what your taste, or where you live, we give you access to the best global and local content — top-rated TV series, critically-acclaimed feature films, Live TV, sports and news, in 12+ languages, all with one easy subscription.</div>
+<div style="width: 361px; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;padding-top: 16px;" >Dor is backed by highly experienced media and Technology veterans.</div>
+<div style="width: 361px; color: white; font-size: 17px; font-family: Roboto; font-weight: 400; word-wrap: break-word;padding-top: 16px;" >We’re perpetually updating our libraries to give you more of what you like.
+                                                                                                                        So keep hitting refresh to stumble upon new features and finds – music, games, wellness & education channels, with a chance to turn your TV into your new favourite place to shop.</div>
+</div>
+</div>

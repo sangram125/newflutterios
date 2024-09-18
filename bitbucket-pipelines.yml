@@ -1,0 +1,278 @@
+pipelines:
+  pull-requests:
+    '*/CMA-*':
+      - step:
+          name: Build
+          size: 2x
+          image: sangrambhau/cicd-flutter-java-17:v1
+          caches:
+            - gradle
+          script:
+            # Configure AWS CLI (make sure to set your AWS credentials in Bitbucket environment variables)
+            - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+            - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+            - aws configure set default.region $AWS_REGION
+            # Download the required file from S3
+            - aws s3 cp s3://cicd-bitbucket-hiddenfile-s3-bucket-flutter/releasekey.properties ./android
+            - aws s3 cp s3://cicd-bitbucket-hiddenfile-s3-bucket-flutter/releasekey.jks ./android/app/
+            - ls ./android
+            - ls ./android/app/
+            # Extract version from pubspec.yaml
+            - |
+                VERSION_NAME=$(grep 'version: ' pubspec.yaml | sed 's/version: //')
+            - |
+                echo "Extracted VERSION_NAME: $VERSION_NAME"
+            # Build App Bundle
+            - flutter clean
+            - flutter pub get
+            - flutter pub upgrade
+            #- flutter test --machine --coverage > tests.output
+            - flutter build apk --release
+            - APK_PATH="build/app/outputs/flutter-apk/app-release.apk"
+            - |
+                  JIRA_ISSUE_KEY=$(echo $BITBUCKET_BRANCH | grep -o 'CMA-[0-9]\+')
+                  echo "Jira Issue Key: $JIRA_ISSUE_KEY"
+                  if [ -z "$JIRA_ISSUE_KEY" ]; then
+                    echo "Jira issue key not found in branch name"
+                    exit 1
+                  fi
+            - NEW_FILE_NAME="${JIRA_ISSUE_KEY}-dor-companion-app-${VERSION_NAME}.apk"
+            - mv build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/$NEW_FILE_NAME
+            - |
+                 curl -D- -u $JIRA_USERNAME:$JIRA_API_TOKEN -X POST -H "X-Atlassian-Token: no-check" -F "file=@build/app/outputs/flutter-apk/$NEW_FILE_NAME" "https://streambox-media.atlassian.net/rest/api/2/issue/$JIRA_ISSUE_KEY/attachments"
+          artifacts:
+            - build/app/outputs/flutter-apk/app-release.apk
+  
+  branches:
+    Quality:
+      - parallel:
+          - step:
+              name: Build
+              size: 2x 
+              image: sangrambhau/cicd-flutter-java-17:v1
+              caches:
+                - gradle
+              script:
+                # Install Ruby (necessary for Fastlane)
+                - apt-get update && apt-get install -y ruby ruby-dev build-essential
+                # Install Fastlane
+                - gem install fastlane -NV
+                # Set Locale to UTF-8
+                - export LC_ALL=en_US.UTF-8
+                - export LANG=en_US.UTF-8
+                # Configure AWS CLI (make sure to set your AWS credentials in Bitbucket environment variables)
+                - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+                - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+                - aws configure set default.region $AWS_REGION
+                # Download the required file from S3
+                - aws s3 cp s3://cicd-bitbucket-hiddenfile-s3-bucket-flutter/cicd-play-store-api-gcp-key ./
+                - aws s3 cp s3://cicd-bitbucket-hiddenfile-s3-bucket-flutter/releasekey.properties ./android
+                - aws s3 cp s3://cicd-bitbucket-hiddenfile-s3-bucket-flutter/releasekey.jks ./android/app/
+                - ls ./android
+                - ls ./android/app/
+                - cat cicd-play-store-api-gcp-key
+
+                # Set permissions and validate key file
+                - chmod 600 cicd-play-store-api-gcp-key
+                - if [ ! -f cicd-play-store-api-gcp-key ]; then echo "GCP key file missing!"; exit 1; fi
+
+                # Extract version from pubspec.yaml
+                - |
+                    VERSION_NAME=$(grep 'version: ' pubspec.yaml | sed 's/version: //')
+                - |
+                    echo "Extracted VERSION_NAME: $VERSION_NAME"
+                # Build App Bundle
+                - flutter clean
+                - flutter pub get
+                - flutter pub upgrade
+                - flutter build appbundle --release
+
+                # Set environment variables for further steps
+                - export PACKAGE_NAME="tv.dorplay.companion"
+                - |
+                    echo "PACKAGE_NAME is set to: $PACKAGE_NAME"
+                
+                - export NEW_FILE_NAME="${BITBUCKET_BRANCH}-dor-companion-app-${VERSION_NAME}.aab"
+                - |
+                    echo "NEW_FILE_NAME is set to: $NEW_FILE_NAME"
+                
+                - export JSON_KEY_FILE="/opt/atlassian/pipelines/agent/build/cicd-play-store-api-gcp-key"
+                - |
+                   echo "JSON_KEY_FILE is set to: $JSON_KEY_FILE"
+
+                # Rename the app bundle file
+                - mv build/app/outputs/bundle/release/app-release.aab build/app/outputs/bundle/release/$NEW_FILE_NAME
+                - if [ ! -f build/app/outputs/bundle/release/$NEW_FILE_NAME ]; then echo "App bundle not found!"; exit 1; fi
+
+                # Upload the app bundle using Fastlane
+                - cd android 
+                - fastlane run validate_play_store_json_key json_key:../cicd-play-store-api-gcp-key
+                - fastlane supply --aab ../build/app/outputs/bundle/release/$NEW_FILE_NAME --json_key $JSON_KEY_FILE --package_name $PACKAGE_NAME --track internal --release_status draft
+
+             
+                # Final confirmation
+                - echo "Deployment completed successfully!"
+
+          - step:
+              name: SonarQube
+              image: sangrambhau/sonar-flutter-cicd:v1
+              caches:
+                - gradle
+              script:
+                - sonar-scanner -Dsonar.projectKey=dor-companion-app -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.token=$SONAR_TOKEN
+                #- apk add --no-cache jq
+                #- |
+                      #QUALITY_GATES_STATUS=$(curl -s -u $SONAR_TOKEN: $SONAR_HOST_URL/api/qualitygates/project_status?projectKey=dor-companion-app | jq -r .projectStatus.status)
+                      #echo "Quality Gates Status: $QUALITY_GATES_STATUS"
+                      #if [ "$QUALITY_GATES_STATUS" != "OK" ]; then
+                        #echo "Quality Gate failed"
+                        #exit 1
+                      #else
+                        #echo "Quality Gate passed"
+                      #fi
+
+  custom:
+    Pre-Prod:
+      - step:
+          name: Build
+          size: 2x
+          image: sangrambhau/cicd-flutter-java-17:v1
+          caches:
+            - gradle
+          script:
+            # Install Ruby (necessary for Fastlane)
+            - apt-get update && apt-get install -y ruby ruby-dev build-essential
+            # Install Fastlane
+            - gem install fastlane -NV
+            # Set Locale to UTF-8
+            - export LC_ALL=en_US.UTF-8
+            - export LANG=en_US.UTF-8
+
+            # Configure AWS CLI (make sure to set your AWS credentials in Bitbucket environment variables)
+            - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+            - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+            - aws configure set default.region $AWS_REGION
+            # Download the required file from S3
+            - aws s3 cp s3://cicd-bitbucket-hiddenfile-s3-bucket-flutter/cicd-play-store-api-gcp-key ./
+            - aws s3 cp s3://cicd-bitbucket-hiddenfile-s3-bucket-flutter/releasekey.properties ./android
+            - aws s3 cp s3://cicd-bitbucket-hiddenfile-s3-bucket-flutter/releasekey.jks ./android/app/
+
+            # List the downloaded files for verification
+            - ls ./android
+            - ls ./android/app/
+            - cat cicd-play-store-api-gcp-key
+
+            # Set permissions and validate key file
+            - chmod 600 cicd-play-store-api-gcp-key
+            - if [ ! -f cicd-play-store-api-gcp-key ]; then echo "GCP key file missing!"; exit 1; fi
+
+            # Extract version from pubspec.yaml
+            - |
+                VERSION_NAME=$(grep 'version: ' pubspec.yaml | sed 's/version: //')
+            - |
+                echo "Extracted VERSION_NAME: $VERSION_NAME"
+            # Build App Bundle
+            - flutter clean
+            - flutter pub get
+            - flutter pub upgrade
+            - flutter build appbundle --release
+
+            # Set environment variables for further steps
+            - export PACKAGE_NAME="tv.dorplay.companion"
+            - |
+                echo "PACKAGE_NAME is set to: $PACKAGE_NAME"
+                
+            - export NEW_FILE_NAME="${BITBUCKET_BRANCH}-dor-companion-app-${VERSION_NAME}.aab"
+            - |
+                echo "NEW_FILE_NAME is set to: $NEW_FILE_NAME"
+                
+            - export JSON_KEY_FILE="/opt/atlassian/pipelines/agent/build/cicd-play-store-api-gcp-key"
+            - |
+                echo "JSON_KEY_FILE is set to: $JSON_KEY_FILE"
+
+            # Rename the app bundle file
+            - mv build/app/outputs/bundle/release/app-release.aab build/app/outputs/bundle/release/$NEW_FILE_NAME
+            - if [ ! -f build/app/outputs/bundle/release/$NEW_FILE_NAME ]; then echo "App bundle not found!"; exit 1; fi
+
+            # Upload the app bundle using Fastlane
+            - cd android 
+            - fastlane run validate_play_store_json_key json_key:../cicd-play-store-api-gcp-key
+            - fastlane supply --aab ../build/app/outputs/bundle/release/$NEW_FILE_NAME --json_key $JSON_KEY_FILE --package_name $PACKAGE_NAME --track internal --release_status draft
+
+            # Final confirmation
+            - echo "Deployment completed successfully!"
+
+  
+    main:
+      - step:
+          name: Build
+          size: 2x
+          image: sangrambhau/cicd-flutter-java-17:v1
+          caches:
+            - gradle
+          script:
+            # Install Ruby (necessary for Fastlane)
+            - apt-get update && apt-get install -y ruby ruby-dev build-essential
+            # Install Fastlane
+            - gem install fastlane -NV
+            # Set Locale to UTF-8
+            - export LC_ALL=en_US.UTF-8
+            - export LANG=en_US.UTF-8
+
+            # Configure AWS CLI (make sure to set your AWS credentials in Bitbucket environment variables)
+            - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+            - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+            - aws configure set default.region $AWS_REGION
+            # Download the required file from S3
+            - aws s3 cp s3://cicd-bitbucket-hiddenfile-s3-bucket-flutter/cicd-play-store-api-gcp-key ./
+            - aws s3 cp s3://cicd-bitbucket-hiddenfile-s3-bucket-flutter/releasekey.properties ./android
+            - aws s3 cp s3://cicd-bitbucket-hiddenfile-s3-bucket-flutter/releasekey.jks ./android/app/
+
+            # List the downloaded files for verification
+            - ls -la ./android
+            - ls -la ./android/app/
+            - cat cicd-play-store-api-gcp-key
+
+            # Set permissions and validate key file
+            - chmod 600 cicd-play-store-api-gcp-key
+            - if [ ! -f cicd-play-store-api-gcp-key ]; then echo "GCP key file missing!"; exit 1; fi
+
+            # Extract version from pubspec.yaml
+            - |
+                VERSION_NAME=$(grep 'version: ' pubspec.yaml | sed 's/version: //')
+            - |
+                echo "Extracted VERSION_NAME: $VERSION_NAME"
+            # Build App Bundle
+            - flutter clean
+            - flutter pub get
+            - flutter build appbundle --release
+
+            # Set environment variables for further steps
+            - export PACKAGE_NAME="tv.dorplay.companion"
+            - |
+                echo "PACKAGE_NAME is set to: $PACKAGE_NAME"
+                
+            - export NEW_FILE_NAME="${BITBUCKET_BRANCH}-dor-companion-app-${VERSION_NAME}.aab"
+            - |
+                echo "NEW_FILE_NAME is set to: $NEW_FILE_NAME"
+                
+            - export JSON_KEY_FILE="/opt/atlassian/pipelines/agent/build/cicd-play-store-api-gcp-key"
+            - |
+                echo "JSON_KEY_FILE is set to: $JSON_KEY_FILE"
+
+            # Rename the app bundle file
+            - mv build/app/outputs/bundle/release/app-release.aab build/app/outputs/bundle/release/$NEW_FILE_NAME
+            - if [ ! -f build/app/outputs/bundle/release/$NEW_FILE_NAME ]; then echo "App bundle not found!"; exit 1; fi
+
+            # Upload the app bundle using Fastlane
+            - cd android 
+            - fastlane run validate_play_store_json_key json_key:../cicd-play-store-api-gcp-key
+            - fastlane supply --aab ../build/app/outputs/bundle/release/$NEW_FILE_NAME --json_key $JSON_KEY_FILE --package_name $PACKAGE_NAME --track internal --release_status completed
+
+            # Final confirmation
+            - echo "Deployment completed successfully!"
+            
+            
+                
+
+          

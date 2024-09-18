@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "677807102419",
+    "project_id": "dorplay-b3bcf",
+    "storage_bucket": "dorplay-b3bcf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:677807102419:android:99d6d6e76c53442e013726",
+        "android_client_info": {
+          "package_name": "tv.dorplay.companion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "677807102419-dgrvj0ftit85hv1e3egqsgvft6uqsg9d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6mh8MJJNOinUyXsnFGu8wMIluS3xAkNY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "677807102419-dgrvj0ftit85hv1e3egqsgvft6uqsg9d.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "677807102419-lsjsj1uhbvmj6ssulie662s5906ofkle.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "tv.dorplay.companion"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

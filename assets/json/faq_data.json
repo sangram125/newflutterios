@@ -1,0 +1,42 @@
+[
+{
+"question": "How do I create an account for dor?",
+"answer": "Creating an account is very simple. Once the TV is turned ON and connected to Wi-Fi, Sign up with the contact number and one OTP will be generated. Enter the OTP and click on Confirm. You will see the Homepage with top trending Movies/Shows on your TV"
+},
+{
+"question": "Why didn't my subscription renew?",
+"answer": "If your subscription didn't automatically renew, your payment method may have expired and you'll need to update your payment method in your account. If that doesn't work, try contacting your bank for auto renewal issues."
+},
+{
+"question": "How do I cancel my subscription?",
+"answer": "To cancel the subscription billed through:\n  • Sign-in to you account and go to your profile\n  • Under Active subscriptions, select the subscription you want to cancel and select Turn off auto-renew\n  • Continue to use your subscription until the end of your current billing cycle"
+},
+{
+"question": "How can I find content that suits my preferences or is similar to what I've enjoyed in the past?",
+"answer": "For shows and movies based on your language selected and preferred genre, please look at rows Handpicked movies for you and Binge worthy shows for you on the Homepage.  The more you select preferences (in Profile - Edit preferences), the more robust our recommendations."
+},
+{
+"question": "Are there any interactive features or additional content, like behind-the-scenes or director's commentary, available for your shows and movies?",
+"answer": "We are not the creators of these shows or movies. If the individual platform has this content, you can access it."
+},
+{
+"question": "Do I need to download the OTTs as per my subscription?",
+"answer": "No, you don't have to download any of the OTTs as per your subscription. However, you need to install the particular OTT which is reflected on your home page."
+},
+{
+"question": "How Do I remove the app which I am not watching?",
+"answer": "Click on particular OTT, there is a feature for Uninstall. Click on Uninstall. The same will be removed from your homepage."
+},
+{
+"question": "What is the warranty of the TV?",
+"answer": "Our TVs come with a one-year warranty covering any manufacturing defects or technical issues."
+},
+{
+"question": "Do you have an app where we can see the content?",
+"answer": "Yes, we have an app available for iOS and Android devices, providing easy access to our content library."
+},
+{
+"question": "How many devices can I watch at a time?",
+"answer": "It comes with one companion app on mobile and at the same time on TV. So 2 devices can be accessed at the same time, irrespective of the content streaming."
+}
+]
