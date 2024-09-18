@@ -16,7 +16,8 @@ jobs:
       APP_STORE_APP_ID: ${{ vars.APP_STORE_APP_ID }}
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Check out the repository
+      uses: actions/checkout@v4
 
     - name: Set up Flutter
       uses: subosito/flutter-action@v2
@@ -26,6 +27,15 @@ jobs:
     - name: Install Codemagic CLI tools
       run: pip install codemagic-cli-tools
 
+    - name: Flutter pub get
+      run: flutter pub get
+
+    - name: Run Flutter pub upgrade
+      run: flutter pub upgrade
+
+    - name: Flutter pub outdated
+      run: flutter pub outdated
+
     - name: Set up keychain
       run: keychain initialize
 
@@ -33,7 +43,7 @@ jobs:
       run: |
         app-store-connect fetch-signing-files tv.dorplay.companion \
         --type IOS_APP_STORE \
-        --create       
+        --create
 
     - name: Set up signing certificate
       run: keychain add-certificates
@@ -44,8 +54,16 @@ jobs:
     - name: Increment build number
       run: |
         cd ios
-        agvtool new-version -all $(($(app-store-connect get-latest-testflight-build-number "$APP_STORE_APP_ID") + 1))       
+        agvtool new-version -all $(($(app-store-connect get-latest-testflight-build-number "$APP_STORE_APP_ID") + 1))
 
-    - name: Build ipa for distribution
+    - name: Clean the Flutter build
+      run: flutter clean
+
+    - name: Build IPA for distribution
+      run: flutter build ipa --release --export-options-plist=$HOME/export_options.plist
+
+    - name: Upload IPA to App Store Connect
       run: |
-        flutter build ipa --release --export-options-plist=$HOME/export_options.plist
+        app-store-connect upload-ipa \
+        --path build/ios/ipa/Runner.ipa \
+        --app-id "$APP_STORE_APP_ID"
