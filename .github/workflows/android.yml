@@ -23,12 +23,6 @@ jobs:
       with:
         channel: 'stable'
 
-    - name: Flutter pub get
-      run: flutter pub get
-
-    - name: Run Flutter pub upgrade
-      run: flutter pub upgrade
-
     - name: Install Codemagic CLI tools
       run: pip install codemagic-cli-tools
 
